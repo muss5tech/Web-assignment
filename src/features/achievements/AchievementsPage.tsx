@@ -7,6 +7,7 @@ import { fetchAchievements } from './achievements.thunks';
 import { selectAchievementsLoading } from './achievements.selectors';
 import AchievementsTable from './AchievementsTable';
 import AchievementFilters from './AchievementFilters';
+import ThemeToggle from '../../components/ThemeToggle';
 
 const AchievementsPage = () => {
     const dispatch = useAppDispatch();
@@ -28,13 +29,16 @@ const AchievementsPage = () => {
         <NuqsAdapter>
             <Container maxWidth="xl" sx={{ py: 4 }}>
                 <Toaster position="top-right" richColors />
-                <Box mb={4}>
-                    <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
-                        Achievements Management
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                        Manage and track your professional achievements
-                    </Typography>
+                <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+                    <Box>
+                        <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
+                            Achievements Management
+                        </Typography>
+                        <Typography variant="body1" color="text.secondary">
+                            Manage and track your professional achievements
+                        </Typography>
+                    </Box>
+                    <ThemeToggle />
                 </Box>
                 <AchievementFilters />
                 <AchievementsTable />
