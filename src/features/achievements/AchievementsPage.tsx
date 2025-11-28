@@ -1,7 +1,7 @@
-
 import { useEffect } from 'react';
 import { Container, Box, Typography, CircularProgress } from '@mui/material';
 import { Toaster } from 'sonner';
+import { NuqsAdapter } from 'nuqs/adapters/react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchAchievements } from './achievements.thunks';
 import { selectAchievementsLoading } from './achievements.selectors';
@@ -25,19 +25,21 @@ const AchievementsPage = () => {
     }
 
     return (
-        <Container maxWidth="xl" sx={{ py: 4 }}>
-            <Toaster position="top-right" richColors />
-            <Box mb={4}>
-                <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
-                    Achievements Management
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                    Manage and track your professional achievements
-                </Typography>
-            </Box>
-            <AchievementFilters />
-            <AchievementsTable />
-        </Container>
+        <NuqsAdapter>
+            <Container maxWidth="xl" sx={{ py: 4 }}>
+                <Toaster position="top-right" richColors />
+                <Box mb={4}>
+                    <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
+                        Achievements Management
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                        Manage and track your professional achievements
+                    </Typography>
+                </Box>
+                <AchievementFilters />
+                <AchievementsTable />
+            </Container>
+        </NuqsAdapter>
     );
 };
 
