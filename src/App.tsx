@@ -1,15 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+import AchievementsPage from './features/achievements/AchievementsPage';
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-      </Route>
-    </Routes>
-  );
-}
+  function App() {
+    return (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="achievements" element={<AchievementsPage />} />
+        </Route>
+      </Routes>
+    );
+  }
 
 export default App;
