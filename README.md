@@ -21,7 +21,7 @@ A professional portfolio website built for the S5Tech Frontend Mentorship Progra
 - ⚡ **Fast Performance** - Optimized with Vite
 - 🔍 **SEO Friendly** - Proper meta tags and structure
 - ♿ **Accessible** - Follows WCAG guidelines
-
+ 
 ## 📁 Project Structure
 
 ```
