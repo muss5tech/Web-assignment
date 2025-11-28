@@ -81,8 +81,8 @@ const AchievementsTable = () => {
     const [search] = useQueryState('search', parseAsString.withDefault(''));
     const [category] = useQueryState('category', parseAsString.withDefault(''));
     const [status] = useQueryState('status', parseAsString.withDefault(''));
-    const [dateFrom] = useQueryState('dateFrom', parseAsIsoDateTime.withDefault(new Date()));
-    const [dateTo] = useQueryState('dateTo', parseAsIsoDateTime.withDefault(new Date()));
+    const [dateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
+    const [dateTo] = useQueryState('dateTo', parseAsIsoDateTime);
     const [editing, setEditing] = useState<EditingState | null>(null);
 
     const filteredAchievements = useMemo(() => {

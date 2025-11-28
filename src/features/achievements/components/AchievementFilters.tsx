@@ -9,8 +9,8 @@ const AchievementFilters = () => {
     const [search, setSearch] = useQueryState('search', parseAsString.withDefault(''));
     const [category, setCategory] = useQueryState('category', parseAsString.withDefault(''));
     const [status, setStatus] = useQueryState('status', parseAsString.withDefault(''));
-    const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime.withDefault(new Date()));
-    const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime.withDefault(new Date()));
+    const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
+    const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime);
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleClearFilters = () => {

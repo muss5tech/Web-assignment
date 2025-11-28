@@ -49,7 +49,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
 
     const onSubmit = async (data: AchievementFormData) => {
         try {
-            console.log(data)
             await dispatch(createAchievement(data)).unwrap();
             toast.success('Achievement created successfully');
             reset();
