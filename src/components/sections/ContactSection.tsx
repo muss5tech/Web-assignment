@@ -11,7 +11,7 @@ import {
   DownloadIcon,
   ExternalLinkIcon,
   SparklesIcon,
-} from '../icons';
+} from '../Icons';
 
 function ContactSection() {
   const socialIcons = {

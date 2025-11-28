@@ -2,7 +2,7 @@ import { experiences, type ExperienceItem } from '../../data/experience';
 import SectionTitle from '../ui/SectionTitle';
 import AnimatedSection from '../ui/AnimatedSection';
 import Badge from '../ui/Badge';
-import { BriefcaseIcon, GraduationCapIcon } from '../icons';
+import { BriefcaseIcon, GraduationCapIcon } from '../Icons';
 
 function TimelineItem({
   experience,
