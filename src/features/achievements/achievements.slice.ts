@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Achievement } from '../../data/achievements';
-import { fetchAchievements, createAchievement, updateAchievement, deleteAchievement } from
-    './achievements.thunks';
+import { fetchAchievements, createAchievement, updateAchievement, deleteAchievement } from './achievements.thunks';
 
 interface AchievementsState {
     items: Achievement[];

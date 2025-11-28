@@ -5,8 +5,8 @@ import { NuqsAdapter } from 'nuqs/adapters/react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchAchievements } from '../features/achievements/achievements.thunks';
 import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
-import AchievementsTable from '../features/achievements/AchievementsTable';
-import AchievementFilters from '../features/achievements/AchievementFilters';
+import AchievementsTable from '../features/achievements/components/AchievementsTable';
+import AchievementFilters from '../features/achievements/components/AchievementFilters';
 import ThemeToggle from '../components/ThemeToggle';
 
 const AchievementsPage = () => {

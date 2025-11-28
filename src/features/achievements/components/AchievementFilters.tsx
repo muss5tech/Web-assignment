@@ -2,7 +2,7 @@ import { Add, Clear } from '@mui/icons-material';
 import { Box, Button, Grid, MenuItem, Paper, TextField } from '@mui/material';
 import { parseAsIsoDateTime, parseAsString, useQueryState } from 'nuqs';
 import { useState } from 'react';
-import { AchievementCategory, AchievementStatus } from '../../data/achievements';
+import { AchievementCategory, AchievementStatus } from '../../../data/achievements';
 import AchievementDialog from './AchievementDialog';
 
 const AchievementFilters = () => {

@@ -21,10 +21,10 @@ import { Edit, Delete, Save, Cancel } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import { toast } from 'sonner';
 import { useQueryState, parseAsInteger, parseAsString, parseAsIsoDateTime } from 'nuqs';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { selectAllAchievements } from './achievements.selectors';
-import { deleteAchievement, updateAchievement } from './achievements.thunks';
-import { Achievement, AchievementCategory, AchievementStatus, TechStack } from '../../data/achievements';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { selectAllAchievements } from '../achievements.selectors';
+import { deleteAchievement, updateAchievement } from '../achievements.thunks';
+import { Achievement, AchievementCategory, AchievementStatus, TechStack } from '../../../data/achievements';
 
 interface EditingState {
     id: string;

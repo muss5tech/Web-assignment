@@ -11,5 +11,4 @@ export const selectAchievementsLoading = createSelector([selectAchievementsState
 export const selectAchievementsError = createSelector([selectAchievementsState], (state) => state.error);
 
 export const selectAchievementById = (id: string) =>
-    createSelector([selectAllAchievements], (achievements) => achievements.find((achievement) => achievement.id ===
-        id));
+    createSelector([selectAllAchievements], (achievements) => achievements.find((achievement) => achievement.id === id));

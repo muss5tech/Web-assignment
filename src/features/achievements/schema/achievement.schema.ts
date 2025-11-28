@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { AchievementCategory, AchievementStatus, TechStack } from '../../data/achievements';
+import { AchievementCategory, AchievementStatus, TechStack } from '../../../data/achievements';
 
 export const achievementSchema = z.object({
     title: z

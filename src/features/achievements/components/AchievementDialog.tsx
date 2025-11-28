@@ -16,10 +16,10 @@ import {
 import dayjs from 'dayjs';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { AchievementCategory, AchievementStatus, TechStack } from '../../data/achievements';
-import { useAppDispatch } from '../../store/hooks';
-import { AchievementFormData, achievementSchema } from './achievement.schema';
-import { createAchievement } from './achievements.thunks';
+import { AchievementCategory, AchievementStatus, TechStack } from '../../../data/achievements';
+import { useAppDispatch } from '../../../store/hooks';
+import { AchievementFormData, achievementSchema } from '../schema/achievement.schema';
+import { createAchievement } from '../achievements.thunks';
 
 interface AchievementDialogProps {
     open: boolean;
@@ -49,6 +49,7 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
 
     const onSubmit = async (data: AchievementFormData) => {
         try {
+            console.log(data)
             await dispatch(createAchievement(data)).unwrap();
             toast.success('Achievement created successfully');
             reset();
