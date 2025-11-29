@@ -10,7 +10,10 @@ function TechCategoryCard({
   category: TechCategory;
   index: number;
 }) {
-  const colorMap: Record<string, 'frontend' | 'mobile' | 'backend' | 'devops' | 'others'> = {
+  const colorMap: Record<
+    string,
+    'frontend' | 'mobile' | 'backend' | 'devops' | 'others'
+  > = {
     'tech-frontend': 'frontend',
     'tech-mobile': 'mobile',
     'tech-backend': 'backend',
@@ -23,7 +26,6 @@ function TechCategoryCard({
   return (
     <AnimatedSection
       animation="fade-in-up"
-      delay={index * 100}
       className="bg-background-card rounded-xl border border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300"
     >
       <h3 className="font-mono text-lg font-semibold text-accent-primary mb-4">
@@ -35,7 +37,10 @@ function TechCategoryCard({
             key={item.name}
             color={badgeColor}
             className="opacity-0 animate-fade-in"
-            style={{ animationDelay: `${(index * 100) + (itemIndex * 50)}ms`, animationFillMode: 'forwards' }}
+            style={{
+              animationDelay: `${index * 100 + itemIndex * 50}ms`,
+              animationFillMode: 'forwards',
+            }}
           >
             {item.name}
           </Badge>

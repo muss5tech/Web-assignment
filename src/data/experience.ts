@@ -10,8 +10,8 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
-    id: 'vio-technology',
-    company: 'Vio Technology',
+    id: 'abc-technology',
+    company: 'ABC Technology',
     role: 'Frontend Developer',
     period: '2023 - Present',
     isCurrent: true,
@@ -21,7 +21,7 @@ export const experiences: ExperienceItem[] = [
       'Contributed to team growth by hosting technical workshops and training new developers on core technologies.',
       'Collaborated with cross-functional teams by providing weekly progress reports for over 20 company staff.',
       'Built a custom dynamic linking system with Next.js to replace Google Dynamic Links, providing a more flexible and maintainable solution.',
-      'Built cross-platform Vio app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
+      'Built cross-platform ABC app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
       'Managed the full app lifecycle, from distributing internal test builds via Firebase App Distribution to publishing final releases on Google Play and App Store.',
     ],
     techStack: [
@@ -42,15 +42,15 @@ export const experiences: ExperienceItem[] = [
     ],
   },
   {
-    id: 'izota-jsc',
-    company: 'Izota JSC',
+    id: 'dev-jsc',
+    company: 'DEV JSC',
     role: 'Mobile Developer',
     period: '2022 - 2023',
     description: [
       'Developed an internal CMS using React and .NET Core, allowing real-time service customization for customers.',
       'Integrated Sentry with Slack for real-time error tracking, significantly reducing bug resolution time.',
       'Implemented CI/CD pipelines using GitHub Actions to automate the build and distribution of test builds via Firebase App Distribution.',
-      'Developed and maintained cross-platform iZOTA app for both Android and iOS with Flutter and GetX for state management, implementing the MVVM architecture.',
+      'Developed and maintained cross-platform DEV app for both Android and iOS with Flutter and GetX for state management, implementing the MVVM architecture.',
       'Applied a Micro-frontend architecture using Flutter and BloC to manage complex features of an internal IMT app.',
       'Developed OTT functionality into a standalone SDK for external clients.',
       'Integrated a full-featured CMS, OTT features using ZegoCloud, EcoPay – FinViet payment gateway.',
@@ -79,13 +79,7 @@ export const experiences: ExperienceItem[] = [
       'Collaborated directly with clients to understand requirements and deliver solutions.',
       'Gained experience across the full development stack from frontend to backend.',
     ],
-    techStack: [
-      'React.js',
-      'Node.js',
-      'Flutter',
-      'Firebase',
-      'PostgreSQL',
-    ],
+    techStack: ['React.js', 'Node.js', 'Flutter', 'Firebase', 'PostgreSQL'],
   },
   {
     id: 'uit',

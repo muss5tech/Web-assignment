@@ -32,7 +32,7 @@ function ContactSection() {
 
         <div className="max-w-2xl mx-auto">
           {/* Contact Cards */}
-          <AnimatedSection animation="fade-in-up" delay={100}>
+          <AnimatedSection animation="fade-in-up">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {profile.socials.map((social, index) => {
                 const Icon =
@@ -47,9 +47,9 @@ function ContactSection() {
                   >
                     <Card
                       className="flex items-center gap-4"
-                      style={{
-                        animationDelay: `${(index + 1) * 100}ms`,
-                      }}
+                      // style={{
+                      //   animationDelay: `${(index + 1) * 100}ms`,
+                      // }}
                     >
                       <div className="p-3 rounded-lg bg-accent-primary/10 group-hover:bg-accent-primary/20 transition-colors">
                         <Icon className="w-6 h-6 text-accent-primary" />
@@ -70,7 +70,7 @@ function ContactSection() {
           </AnimatedSection>
 
           {/* CV Section */}
-          <AnimatedSection animation="fade-in-up" delay={300}>
+          <AnimatedSection animation="fade-in-up">
             <Card variant="glass" className="text-center">
               <SparklesIcon className="w-8 h-8 text-accent-primary mx-auto mb-4" />
               <h3 className="font-display text-xl font-bold text-foreground-primary mb-2">
@@ -97,11 +97,7 @@ function ContactSection() {
           </AnimatedSection>
 
           {/* CTA */}
-          <AnimatedSection
-            animation="fade-in-up"
-            delay={400}
-            className="text-center mt-12"
-          >
+          <AnimatedSection animation="fade-in-up" className="text-center mt-12">
             <p className="text-foreground-secondary mb-4">
               Prefer email? Reach out directly at
             </p>
@@ -109,7 +105,7 @@ function ContactSection() {
               href={`mailto:${profile.socials.find((s) => s.icon === 'email')?.username}@gmail.com`}
               className="font-display text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
             >
-              dev.hoanglinh@gmail.com
+              mus@s5tech.co
             </a>
           </AnimatedSection>
         </div>

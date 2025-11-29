@@ -7,11 +7,7 @@ import { ExternalLinkIcon, GitHubIcon, CodeIcon } from '../Icons';
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
-    <AnimatedSection
-      animation="fade-in-up"
-      delay={index * 100}
-      className="h-full"
-    >
+    <AnimatedSection animation="fade-in-up" className="h-full">
       <Card className="h-full flex flex-col group">
         {/* Project Icon/Preview */}
         <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-white/5">

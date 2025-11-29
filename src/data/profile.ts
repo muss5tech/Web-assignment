@@ -18,8 +18,8 @@ export interface Profile {
 }
 
 export const profile: Profile = {
-  name: 'Linh',
-  fullName: 'Linh Nguyễn',
+  name: 'Mus',
+  fullName: 'Mus Nguyen',
   role: 'Frontend Developer',
   bio: `Frontend Developer with 2+ years of experience building responsive, high-performance web and mobile applications. I prioritize creating maintainable solutions, considering the long-term impact on the overall system and its stability.
 
@@ -30,26 +30,26 @@ In the age of AI-driven development, I leverage and manage tools like Cursor and
   socials: [
     {
       name: 'GitHub',
-      url: 'https://github.com/nhlinhseuit',
-      username: 'nhlinhseuit',
+      url: 'https://github.com/muss5tech',
+      username: 'muss5tech',
       icon: 'github',
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/nhlinhseuit',
-      username: 'nhlinhseuit',
+      url: 'https://linkedin.com/in/muss5tech',
+      username: 'muss5tech',
       icon: 'linkedin',
     },
     {
       name: 'Email',
-      url: 'mailto:dev.hoanglinh@gmail.com',
-      username: 'dev.hoanglinh',
+      url: 'mailto:mus@s5tech.co',
+      username: 'muss5tech',
       icon: 'email',
     },
     {
       name: 'Phone',
-      url: 'tel:+84378060972',
-      username: '+84 378060972',
+      url: 'tel:+1234567890',
+      username: '+1234567890',
       icon: 'phone',
     },
   ],

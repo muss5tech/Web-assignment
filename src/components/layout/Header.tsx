@@ -46,8 +46,8 @@ function Header() {
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background-primary/80 backdrop-blur-lg border-b border-white/5 py-4'
-          : 'bg-transparent py-6'
+          ? 'bg-background-primary/60 backdrop-blur-lg py-3'
+          : 'bg-transparent py-3'
       )}
     >
       <div className="section-container">
@@ -57,7 +57,7 @@ function Header() {
             to="/"
             className="font-display text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
           >
-            Linh.
+            Mus.
           </Link>
 
           {/* Desktop Navigation */}
@@ -67,7 +67,7 @@ function Header() {
                 <a
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium animated-underline py-1"
+                  className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
                 >
                   {item.label}
                 </a>

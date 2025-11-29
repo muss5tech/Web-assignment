@@ -47,9 +47,7 @@ function HeroSection() {
 
           {/* Greeting */}
           <div className="opacity-0 animate-fade-in-up animation-delay-200">
-            <p className="text-foreground-secondary text-lg mb-2">
-              Hey, I'm
-            </p>
+            <p className="text-foreground-secondary text-lg mb-2">Hey, I'm</p>
             <h1 className="font-display text-5xl md:text-7xl font-bold mb-4">
               <span className="gradient-text">{profile.fullName}</span>
             </h1>
@@ -63,7 +61,7 @@ function HeroSection() {
               </span>
               {profile.isAvailable && (
                 <span className="status-online text-status-online text-sm font-medium">
-                  Available for work
+                  S5TECH • Available
                 </span>
               )}
             </div>
@@ -88,7 +86,8 @@ function HeroSection() {
           <div className="opacity-0 animate-fade-in-up animation-delay-600">
             <div className="flex items-center justify-center gap-4 mb-8">
               {profile.socials.map((social) => {
-                const Icon = socialIcons[social.icon as keyof typeof socialIcons];
+                const Icon =
+                  socialIcons[social.icon as keyof typeof socialIcons];
                 return (
                   <a
                     key={social.name}
@@ -109,11 +108,7 @@ function HeroSection() {
 
           {/* CTA Button */}
           <div className="opacity-0 animate-fade-in-up animation-delay-700">
-            <Button
-              size="lg"
-              onClick={handleContactClick}
-              className="group"
-            >
+            <Button size="lg" onClick={handleContactClick} className="group">
               Let's Connect
               <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>

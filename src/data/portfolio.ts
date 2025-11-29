@@ -1,61 +1,61 @@
 export interface PersonalInfo {
-  name: string
-  fullName: string
-  title: string
-  email: string
-  phone: string
-  github: string
-  linkedin: string
-  location: string
-  bio: string
-  shortBio: string
+  name: string;
+  fullName: string;
+  title: string;
+  email: string;
+  phone: string;
+  github: string;
+  linkedin: string;
+  location: string;
+  bio: string;
+  shortBio: string;
 }
 
 export interface TechStack {
-  category: string
-  categoryLabel: string
-  items: TechItem[]
+  category: string;
+  categoryLabel: string;
+  items: TechItem[];
 }
 
 export interface TechItem {
-  name: string
-  icon?: string
+  name: string;
+  icon?: string;
 }
 
 export interface Experience {
-  id: string
-  company: string
-  role: string
-  period: string
-  isCurrent: boolean
-  description: string[]
-  technologies: string[]
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  isCurrent: boolean;
+  description: string[];
+  technologies: string[];
 }
 
 export interface Project {
-  id: string
-  title: string
-  description: string
-  technologies: string[]
-  link?: string
-  github?: string
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  link?: string;
+  github?: string;
 }
 
 export const personalInfo: PersonalInfo = {
-  name: 'Linh',
-  fullName: 'Linh Nguyễn',
+  name: 'Mus',
+  fullName: 'Mus Nguyen',
   title: 'Frontend Developer',
-  email: 'dev.hoanglinh',
-  phone: '+84 378060972',
-  github: 'nhlinhseuit',
-  linkedin: 'nhlinhseuit',
+  email: 'muss5tech',
+  phone: '+12 34567890',
+  github: 'muss5tech',
+  linkedin: 'muss5tech',
   location: 'Ho Chi Minh City, Vietnam',
   bio: `Frontend Developer with 2+ years of experience building responsive, high-performance web and mobile applications. I prioritize creating maintainable solutions, considering the long-term impact on the overall system and its stability.
 
 In the age of AI-driven development, I leverage and manage tools like Cursor and Claude as AI agents under my guidance to boost delivery speed, enforce architecture, and maintain high code quality.`,
   shortBio:
     "Let's connect and collaborate! I'm passionate about creating exceptional user experiences.",
-}
+};
 
 export const techStack: TechStack[] = [
   {
@@ -126,12 +126,12 @@ export const techStack: TechStack[] = [
       { name: 'Technical Documentation' },
     ],
   },
-]
+];
 
 export const experiences: Experience[] = [
   {
-    id: 'vio',
-    company: 'Vio Technology',
+    id: 'abc',
+    company: 'ABC Technology',
     role: 'Frontend Developer',
     period: 'Current',
     isCurrent: true,
@@ -141,7 +141,7 @@ export const experiences: Experience[] = [
       'Contributed to team growth by hosting technical workshops and training new developers on core technologies.',
       'Collaborated with cross-functional teams by providing weekly progress reports for over 20 company staff.',
       'Built a custom dynamic linking system with Next.js to replace Google Dynamic Links, providing a more flexible and maintainable solution to seamlessly redirect users to the mobile app.',
-      'Built cross-platform Vio app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
+      'Built cross-platform ABC app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
       'Managed the full app lifecycle, from distributing internal test builds via Firebase App Distribution to publishing final releases on the Google Play and App Store.',
     ],
     technologies: [
@@ -162,8 +162,8 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    id: 'izota',
-    company: 'Izota JSC',
+    id: 'dev',
+    company: 'DEV JSC',
     role: 'Software Developer',
     period: '2023 - 2024',
     isCurrent: false,
@@ -171,7 +171,7 @@ export const experiences: Experience[] = [
       'Developed an internal CMS using React and .NET Core, allowing real-time service customization for customers.',
       'Integrated Sentry with Slack for real-time error tracking, significantly reducing bug resolution time.',
       'Implemented CI/CD pipelines using GitHub Actions to automate the build and distribution of test builds to testers via Firebase App Distribution.',
-      'Developed and maintained cross-platform iZOTA app for both Android and iOS with Flutter and GetX for state management, implementing the MVVM architecture.',
+      'Developed and maintained cross-platform DEV app for both Android and iOS with Flutter and GetX for state management, implementing the MVVM architecture.',
       'Applied a Micro-frontend architecture using Flutter and BloC to manage complex features of an internal IMT app, facilitating a scalable, modular development process.',
       'Developed this OTT functionality into a standalone SDK for external clients.',
       'Integrated a full-featured CMS, OTT features using ZegoCloud, EcoPay – FinViet payment gateway.',
@@ -200,7 +200,13 @@ export const experiences: Experience[] = [
       'Worked on various client projects building full-stack web applications.',
       'Developed custom solutions using React, Node.js, and modern web technologies.',
     ],
-    technologies: ['React.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'MongoDB'],
+    technologies: [
+      'React.js',
+      'Node.js',
+      'TypeScript',
+      'PostgreSQL',
+      'MongoDB',
+    ],
   },
   {
     id: 'education',
@@ -214,7 +220,7 @@ export const experiences: Experience[] = [
     ],
     technologies: [],
   },
-]
+];
 
 export const projects: Project[] = [
   {
@@ -222,7 +228,14 @@ export const projects: Project[] = [
     title: 'Video Conferencing Platform',
     description:
       'Developed a full-featured video conferencing platform using Next.js, Clerk, and Getstream, enabling secure authentication, real-time meetings, screen sharing, and recording.',
-    technologies: ['Next.js', 'Clerk', 'GetStream', 'TypeScript', 'Tailwind CSS', 'Shadcn UI'],
+    technologies: [
+      'Next.js',
+      'Clerk',
+      'GetStream',
+      'TypeScript',
+      'Tailwind CSS',
+      'Shadcn UI',
+    ],
   },
   {
     id: 'class-management',
@@ -243,9 +256,16 @@ export const projects: Project[] = [
     title: 'RESTful Product API',
     description:
       'Designed and built a RESTful API from the ground up using Node.js, Express.js, and MySQL to manage a collection of products.',
-    technologies: ['Node.js', 'Express.js', 'Docker', 'MySQL', 'RESTful APIs', 'JavaScript'],
+    technologies: [
+      'Node.js',
+      'Express.js',
+      'Docker',
+      'MySQL',
+      'RESTful APIs',
+      'JavaScript',
+    ],
   },
-]
+];
 
 export const navLinks = [
   { name: 'Home', href: '#home' },
@@ -254,4 +274,4 @@ export const navLinks = [
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
-]
+];

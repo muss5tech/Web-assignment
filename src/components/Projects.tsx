@@ -1,10 +1,10 @@
-import { useInView } from '../hooks'
-import { cn } from '../utils/helpers'
-import { projects } from '../data/portfolio'
-import { FolderIcon, ExternalLinkIcon, GitHubIcon } from './Icons'
+import { useInView } from '../hooks';
+import { cn } from '../utils/helpers';
+import { projects } from '../data/portfolio';
+import { FolderIcon, ExternalLinkIcon, GitHubIcon } from './Icons';
 
 export function Projects() {
-  const [ref, isInView] = useInView({ threshold: 0.1 })
+  const [ref, isInView] = useInView({ threshold: 0.1 });
 
   return (
     <section id="projects" className="py-24 md:py-32 relative">
@@ -24,14 +24,17 @@ export function Projects() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent-primary to-transparent" />
-            <span className="text-accent-primary font-mono text-sm">Projects</span>
+            <span className="text-accent-primary font-mono text-sm">
+              Projects
+            </span>
             <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent-primary to-transparent" />
           </div>
           <h2 className="section-title">
             Featured <span className="gradient-text">Work</span>
           </h2>
           <p className="section-subtitle mx-auto mt-4">
-            Some of the projects I've worked on that showcase my skills and experience
+            Some of the projects I've worked on that showcase my skills and
+            experience
           </p>
         </div>
 
@@ -112,7 +115,7 @@ export function Projects() {
           )}
         >
           <a
-            href="https://github.com/nhlinhseuit"
+            href="https://github.com/muss5tech"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary inline-flex"
@@ -123,5 +126,5 @@ export function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }

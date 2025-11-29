@@ -24,7 +24,7 @@ const AnimatedSection = forwardRef<HTMLDivElement, AnimatedSectionProps>(
       animation = 'fade-in-up',
       delay = 0,
       duration = 600,
-      threshold = 0.1,
+      threshold = 0.3,
       as: Component = 'div',
       children,
       style,

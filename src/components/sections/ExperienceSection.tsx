@@ -17,7 +17,6 @@ function TimelineItem({
   return (
     <AnimatedSection
       animation="fade-in-left"
-      delay={index * 150}
       className="relative pl-8 pb-12 last:pb-0"
     >
       {/* Timeline line */}
@@ -62,7 +61,9 @@ function TimelineItem({
               key={i}
               className="text-foreground-secondary text-sm leading-relaxed flex gap-2"
             >
-              <span className="text-accent-primary mt-1.5 flex-shrink-0">•</span>
+              <span className="text-accent-primary mt-1.5 flex-shrink-0">
+                •
+              </span>
               <span>{item}</span>
             </li>
           ))}

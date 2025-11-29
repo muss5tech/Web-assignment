@@ -1,8 +1,8 @@
-# Linh Nguyen - Portfolio
+# Mus Nguyen - Portfolio
 
 A professional portfolio website built for the S5Tech Frontend Mentorship Program (Battle I).
 
-![Portfolio Preview](https://via.placeholder.com/800x400/0a0a0f/6366f1?text=Linh+Nguyen+Portfolio)
+![Portfolio Preview](https://via.placeholder.com/800x400/0a0a0f/6366f1?text=Mus+Nguyen+Portfolio)
 
 ## 🚀 Tech Stack
 
@@ -21,7 +21,7 @@ A professional portfolio website built for the S5Tech Frontend Mentorship Progra
 - ⚡ **Fast Performance** - Optimized with Vite
 - 🔍 **SEO Friendly** - Proper meta tags and structure
 - ♿ **Accessible** - Follows WCAG guidelines
- 
+
 ## 📁 Project Structure
 
 ```
@@ -51,14 +51,14 @@ portfolio/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/nhlinhseuit/portfolio.git
+git clone https://github.com/muss5tech/portfolio.git
 
 # Navigate to project directory
 cd portfolio
@@ -72,13 +72,13 @@ npm run dev
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Lint code with ESLint |
-| `npm run format` | Format code with Prettier |
+| Command           | Description               |
+| ----------------- | ------------------------- |
+| `npm run dev`     | Start development server  |
+| `npm run build`   | Build for production      |
+| `npm run preview` | Preview production build  |
+| `npm run lint`    | Lint code with ESLint     |
+| `npm run format`  | Format code with Prettier |
 
 ## 📝 Git Workflow
 
@@ -89,6 +89,7 @@ npm run dev
 ```
 
 Where:
+
 - `type` = `feat` | `update` | `fix`
 - `label` = `short-description-in-lowercase`
 
@@ -117,14 +118,14 @@ update: polish ui and ensure responsive design
 
 ### Colors
 
-| Variable | Value | Usage |
-|----------|-------|-------|
-| `background-primary` | `#0a0a0f` | Main background |
-| `background-secondary` | `#12121a` | Secondary background |
-| `accent-primary` | `#6366f1` | Primary accent (Indigo) |
-| `accent-secondary` | `#8b5cf6` | Secondary accent (Violet) |
-| `foreground-primary` | `#ffffff` | Primary text |
-| `foreground-secondary` | `#a1a1aa` | Secondary text |
+| Variable               | Value     | Usage                     |
+| ---------------------- | --------- | ------------------------- |
+| `background-primary`   | `#0a0a0f` | Main background           |
+| `background-secondary` | `#12121a` | Secondary background      |
+| `accent-primary`       | `#6366f1` | Primary accent (Indigo)   |
+| `accent-secondary`     | `#8b5cf6` | Secondary accent (Violet) |
+| `foreground-primary`   | `#ffffff` | Primary text              |
+| `foreground-secondary` | `#a1a1aa` | Secondary text            |
 
 ### Typography
 
@@ -152,4 +153,4 @@ MIT License - feel free to use this as a template for your own portfolio!
 
 ---
 
-Made with ❤️ by [Linh Nguyen](https://github.com/nhlinhseuit)
+Made with ❤️ by [Mus Nguyen](https://github.com/muss5tech)
