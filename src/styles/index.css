@@ -15,7 +15,7 @@
   }
 
   body {
-    @apply bg-background-primary text-foreground-primary font-body antialiased;
+    @apply bg-light-bg-primary text-light-text-primary dark:bg-background-primary dark:text-foreground-primary font-body antialiased;
     overflow-x: hidden;
   }
 
@@ -25,7 +25,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background-secondary;
+    @apply bg-light-bg-secondary dark:bg-background-secondary;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -38,12 +38,12 @@
 
   /* Selection styles */
   ::selection {
-    @apply bg-accent-primary/30 text-foreground-primary;
+    @apply bg-accent-primary/30 text-light-text-primary dark:text-foreground-primary;
   }
 
   /* Focus styles */
   :focus-visible {
-    @apply outline-none ring-2 ring-accent-primary ring-offset-2 ring-offset-background-primary;
+    @apply outline-none ring-2 ring-accent-primary ring-offset-2 ring-offset-light-bg-primary dark:ring-offset-background-primary;
   }
 }
 
@@ -51,7 +51,7 @@
 @layer components {
   /* Glass effect */
   .glass {
-    @apply bg-background-card/80 backdrop-blur-md border border-white/5;
+    @apply bg-light-bg-card/80 dark:bg-background-card/80 backdrop-blur-md border border-gray-200 dark:border-white/5;
   }
 
   /* Gradient text */
@@ -126,7 +126,7 @@
   /* Tech badge */
   .tech-badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium
-           bg-background-hover border border-white/10 transition-all duration-200;
+           bg-light-bg-hover dark:bg-background-hover border border-gray-300 dark:border-white/10 transition-all duration-200;
   }
 
   .tech-badge:hover {
@@ -139,7 +139,7 @@
   }
 
   .timeline-dot {
-    @apply absolute -left-[5px] w-[11px] h-[11px] rounded-full bg-accent-primary border-2 border-background-primary
+    @apply absolute -left-[5px] w-[11px] h-[11px] rounded-full bg-accent-primary border-2 border-light-bg-primary dark:border-background-primary
            shadow-glow-sm;
   }
 }

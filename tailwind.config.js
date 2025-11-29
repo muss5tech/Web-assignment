@@ -1,10 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Background colors
+        // Light mode background colors
+        light: {
+          bg: {
+            primary: '#ffffff',
+            secondary: '#f8fafc',
+            card: '#ffffff',
+            hover: '#f1f5f9',
+          },
+          text: {
+            primary: '#0f172a',
+            secondary: '#475569',
+            muted: '#64748b',
+          },
+        },
+        // Dark mode background colors
         background: {
           primary: '#0a0a0f',
           secondary: '#12121a',
