@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { MenuIcon, CloseIcon } from '../Icons';
+import ThemeToggle from '../ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -46,7 +47,7 @@ function Header() {
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background-primary/60 backdrop-blur-lg py-3'
+          ? 'bg-background-primary/60 backdrop-blur-lg py-2'
           : 'bg-transparent py-3'
       )}
     >
@@ -61,19 +62,22 @@ function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center gap-6">
+            <ul className="flex items-center gap-8">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ThemeToggle />
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -93,22 +97,27 @@ function Header() {
         <div
           className={clsx(
             'md:hidden overflow-hidden transition-all duration-300',
-            isMobileMenuOpen ? 'max-h-64 mt-4' : 'max-h-0'
+            isMobileMenuOpen ? 'max-h-81 mt-4' : 'max-h-0'
           )}
         >
-          <ul className="flex flex-col gap-4 py-4 border-t border-white/10">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
+            <ul className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="pt-2 border-t border-white/10">
+              <ThemeToggle />
+            </div>
+          </div>
         </div>
       </div>
     </header>
