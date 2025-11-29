@@ -110,11 +110,9 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
         </Box>
       </Box>
 
-      {/* Form Content */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box sx={dialogContentContainer}>
           <Grid container spacing={2.5}>
-            {/* Title Field */}
             <Grid size={{ xs: 12 }}>
               <Box>
                 <FormFieldLabel>Achievement Title</FormFieldLabel>
@@ -136,7 +134,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
               </Box>
             </Grid>
 
-            {/* Description Field */}
             <Grid size={{ xs: 12 }}>
               <Box>
                 <FormFieldLabel>Description</FormFieldLabel>
@@ -160,7 +157,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
               </Box>
             </Grid>
 
-            {/* Category and Status Row */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Box>
                 <FormFieldLabel>Category</FormFieldLabel>
@@ -215,7 +211,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
               </Box>
             </Grid>
 
-            {/* Date and Tech Stack Row */}
             <Grid size={{ xs: 12, md: 6 }}>
               <Box>
                 <FormFieldLabel>Date</FormFieldLabel>
@@ -284,7 +279,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
               </Box>
             </Grid>
 
-            {/* Impact Field */}
             <Grid size={{ xs: 12 }}>
               <Box>
                 <FormFieldLabel>Impact</FormFieldLabel>

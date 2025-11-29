@@ -59,10 +59,10 @@ export const achievements: Achievement[] = [
         techStack: [TechStack.NextJS, TechStack.TypeScript, TechStack.Firebase],
     },
     {
-        id: 'vio-app-launch',
-        title: 'Cross-Platform Vio App Launch',
+        id: 'abc-app-launch',
+        title: 'Cross-Platform ABC App Launch',
         description:
-            'Successfully built and launched cross-platform Vio app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
+            'Successfully built and launched cross-platform ABC app for both Android and iOS with Flutter, integrated dynamic link system, AI-powered chatbot, and 9Pay payment gateway.',
         category: AchievementCategory.Project,
         status: AchievementStatus.Completed,
         date: '2024-06-20',
