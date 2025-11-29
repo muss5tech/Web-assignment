@@ -33,6 +33,7 @@ type EditableValue =
   | AchievementCategory
   | AchievementStatus
   | TechStack[];
+import { tableStyles, typographyStyles } from '../styles/achievementStyles';
 
 interface EditingState {
   id: string;
@@ -159,44 +160,11 @@ const AchievementsTable = () => {
 
   if (!filteredAchievements.length) {
     return (
-      <Box
-        sx={{
-          p: 4,
-          textAlign: 'center',
-          borderRadius: 3,
-          border: (theme) =>
-            theme.palette.mode === 'light'
-              ? '1px solid rgba(203,213,225,0.8)'
-              : '1px solid rgba(255,255,255,0.06)',
-          background: (theme) =>
-            theme.palette.mode === 'light'
-              ? 'linear-gradient(135deg, rgba(248,250,252,0.95), rgba(226,232,240,0.5))'
-              : 'linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,64,175,0.35))',
-          boxShadow: (theme) =>
-            theme.palette.mode === 'light'
-              ? '0 4px 12px rgba(148,163,184,0.15)'
-              : '0 18px 45px rgba(15,23,42,0.8)',
-          color: (theme) =>
-            theme.palette.mode === 'light'
-              ? 'rgba(15,23,42,0.9)'
-              : 'rgba(226,232,240,0.9)',
-        }}
-      >
-        <Typography
-          variant="h6"
-          sx={{ fontWeight: 600, letterSpacing: 0.3, mb: 0.5 }}
-        >
+      <Box sx={tableStyles.emptyState}>
+        <Typography variant="h6" sx={typographyStyles.emptyTitle}>
           No achievements found
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'light'
-                ? 'rgba(71,85,105,0.9)'
-                : 'rgba(148,163,184,0.9)',
-          }}
-        >
+        <Typography variant="body2" sx={typographyStyles.emptySubtitle}>
           Try adjusting your filters or add a new achievement.
         </Typography>
       </Box>
@@ -204,80 +172,19 @@ const AchievementsTable = () => {
   }
 
   return (
-    <Box
-      sx={{
-        borderRadius: 3,
-        border: (theme) =>
-          theme.palette.mode === 'light'
-            ? '1px solid rgba(203,213,225,0.8)'
-            : '1px solid rgba(148,163,184,0.35)',
-        background: (theme) =>
-          theme.palette.mode === 'light'
-            ? 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))'
-            : 'linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,64,175,0.35))',
-        boxShadow: (theme) =>
-          theme.palette.mode === 'light'
-            ? '0 4px 12px rgba(148,163,184,0.15), 0 0 0 1px rgba(203,213,225,0.3)'
-            : '0 22px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
-        overflow: 'hidden',
-      }}
-    >
+    <Box sx={tableStyles.container}>
       <TableContainer>
         <Table
           size="small"
           sx={{
-            '& thead tr': {
-              background: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'linear-gradient(90deg, rgba(241,245,249,0.98), rgba(226,232,240,0.85))'
-                  : 'linear-gradient(90deg, rgba(15,23,42,0.95), rgba(30,64,175,0.55))',
-            },
-            '& thead th': {
-              color: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'rgb(30,41,59)'
-                  : 'rgb(219,234,254)',
-              fontWeight: 600,
-              fontSize: 13,
-              textTransform: 'uppercase',
-              letterSpacing: 0.13,
-              borderBottom: (theme) =>
-                theme.palette.mode === 'light'
-                  ? '1px solid rgba(203,213,225,0.8)'
-                  : '1px solid rgba(148,163,184,0.4)',
-              paddingY: 1.5,
-            },
+            '& thead tr': tableStyles.headerRow,
+            '& thead th': tableStyles.headerCell,
             '& tbody tr': {
-              '&:nth-of-type(odd)': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? 'rgba(255,255,255,0.95)'
-                    : 'rgba(15,23,42,0.9)',
-              },
-              '&:nth-of-type(even)': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? 'rgba(248,250,252,0.95)'
-                    : 'rgba(15,23,42,0.85)',
-              },
-              '&:hover': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? 'rgba(226,232,240,0.5)'
-                    : 'rgba(30,64,175,0.35)',
-              },
+              '&:nth-of-type(odd)': tableStyles.rowOdd,
+              '&:nth-of-type(even)': tableStyles.rowEven,
+              '&:hover': tableStyles.rowHover,
             },
-            '& tbody td': {
-              borderBottom: (theme) =>
-                theme.palette.mode === 'light'
-                  ? '1px solid rgba(203,213,225,0.5)'
-                  : '1px solid rgba(30,64,175,0.35)',
-              color: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'rgb(51,65,85)'
-                  : 'rgb(226,232,240)',
-              fontSize: 13,
-            },
+            '& tbody td': tableStyles.bodyCell,
           }}
         >
           <TableHead>
@@ -321,18 +228,7 @@ const AchievementsTable = () => {
         </Table>
       </TableContainer>
 
-      <Box
-        sx={{
-          borderTop: (theme) =>
-            theme.palette.mode === 'light'
-              ? '1px solid rgba(203,213,225,0.8)'
-              : '1px solid rgba(30,64,175,0.4)',
-          background: (theme) =>
-            theme.palette.mode === 'light'
-              ? 'linear-gradient(90deg, rgba(248,250,252,0.98), rgba(241,245,249,0.95))'
-              : 'linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9))',
-        }}
-      >
+      <Box sx={tableStyles.paginationContainer}>
         <TablePagination
           component="div"
           count={filteredAchievements.length}
@@ -341,34 +237,7 @@ const AchievementsTable = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
           rowsPerPageOptions={[5, 10, 25]}
-          sx={{
-            color: (theme) =>
-              theme.palette.mode === 'light'
-                ? 'rgb(71,85,105)'
-                : 'rgb(148,163,184)',
-            '.MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows':
-            {
-              fontSize: 12,
-            },
-            '.MuiTablePagination-actions button': {
-              color: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'rgb(51,65,85)'
-                  : 'rgb(226,232,240)',
-            },
-            '.MuiInputBase-root': {
-              color: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'rgb(51,65,85)'
-                  : 'rgb(226,232,240)',
-            },
-            '.MuiSvgIcon-root': {
-              color: (theme) =>
-                theme.palette.mode === 'light'
-                  ? 'rgb(71,85,105)'
-                  : 'rgb(148,163,184)',
-            },
-          }}
+          sx={tableStyles.pagination}
         />
       </Box>
     </Box>

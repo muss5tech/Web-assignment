@@ -15,14 +15,15 @@ import {
   AchievementCategory,
   AchievementStatus,
 } from '../../../data/achievements';
+import { paperStyles } from '../styles/achievementStyles';
 
 const fieldSx: SxProps<Theme> = {
   '& .MuiOutlinedInput-root': {
-    color: 'rgb(226,232,240)', // text color similar to UIButton outline
-    borderRadius: '0.5rem', // rounded-lg (8px) to match UIButton
+    color: 'rgb(226,232,240)',
+    borderRadius: '0.5rem',
     '& fieldset': {
-      borderColor: 'rgba(99,102,241,0.5)', // accent-primary/50
-      borderRadius: '0.5rem', // rounded-lg (8px) to match UIButton
+      borderColor: 'rgba(99,102,241,0.5)',
+      borderRadius: '0.5rem',
     },
     '&:hover fieldset': {
       borderColor: 'rgb(129,140,248)', // accent hover
@@ -59,7 +60,7 @@ const AchievementFilters = () => {
   const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
   const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime);
 
-  const handleClearFilters = () => {
+  const handleClearFilters = () => {  
     setSearch('');
     setCategory('');
     setStatus('');
@@ -69,25 +70,7 @@ const AchievementFilters = () => {
 
   return (
     <>
-      <Paper
-        sx={{
-          p: 3,
-          mb: 3,
-          borderRadius: 3,
-          border: (theme) =>
-            theme.palette.mode === 'light'
-              ? '1px solid rgba(203,213,225,0.8)'
-              : '1px solid rgba(148,163,184,0.35)',
-          background: (theme) =>
-            theme.palette.mode === 'light'
-              ? 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))'
-              : 'linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,64,175,0.45))',
-          boxShadow: (theme) =>
-            theme.palette.mode === 'light'
-              ? '0 4px 12px rgba(148,163,184,0.15), 0 0 0 1px rgba(203,213,225,0.3)'
-              : '0 18px 45px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
-        }}
-      >
+      <Paper sx={paperStyles.container}>
         <Grid container spacing={2} alignItems="center">
           <Grid size={{ xs: 12, md: 3 }}>
             <TextField

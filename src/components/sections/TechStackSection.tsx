@@ -3,13 +3,15 @@ import SectionTitle from '../ui/SectionTitle';
 import AnimatedSection from '../ui/AnimatedSection';
 import Badge from '../ui/Badge';
 
-function TechCategoryCard({
+const TechCategoryCard = ({
   category,
   index,
 }: {
   category: TechCategory;
   index: number;
-}) {
+}) => {
+  const delayClass = `animation-delay-${(index + 1) * 100}`;
+
   const colorMap: Record<
     string,
     'frontend' | 'mobile' | 'backend' | 'devops' | 'others'
@@ -26,7 +28,7 @@ function TechCategoryCard({
   return (
     <AnimatedSection
       animation="fade-in-up"
-      className="bg-light-bg-card dark:bg-background-card rounded-xl border border-light-border-secondary dark:border-border-secondary p-6 hover:border-accent-primary/20 transition-all duration-300 shadow-sm dark:shadow-none"
+      className={`bg-light-bg-card dark:bg-background-card rounded-xl border border-light-border-secondary dark:border-border-secondary p-6 hover:border-accent-primary/20 transition-all duration-300 shadow-sm dark:shadow-non ${delayClass}`}
     >
       <h3 className="font-mono text-lg font-semibold text-accent-primary mb-4">
         {category.tag}
