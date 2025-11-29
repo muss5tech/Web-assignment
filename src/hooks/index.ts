@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef, useCallback, RefObject } from 'react'
 
-/**
- * Hook to detect scroll position and direction
- */
 export function useScroll() {
   const [scrollY, setScrollY] = useState(0)
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
@@ -27,9 +24,6 @@ export function useScroll() {
   return { scrollY, scrollDirection, isScrolled }
 }
 
-/**
- * Hook to detect if an element is in viewport
- */
 export function useInView(
   options: IntersectionObserverInit = { threshold: 0.1 }
 ): [React.RefObject<HTMLDivElement>, boolean] {
@@ -57,9 +51,6 @@ export function useInView(
   return [ref, isInView]
 }
 
-/**
- * Hook to get active section based on scroll position
- */
 export function useActiveSection(sectionIds: string[]) {
   const [activeSection, setActiveSection] = useState<string>(sectionIds[0] || '')
 
@@ -88,9 +79,6 @@ export function useActiveSection(sectionIds: string[]) {
   return activeSection
 }
 
-/**
- * Hook for window resize with debounce
- */
 export function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
@@ -120,9 +108,6 @@ export function useWindowSize() {
   return windowSize
 }
 
-/**
- * Hook for click outside detection
- */
 export function useClickOutside<T extends HTMLElement>(
   callback: () => void
 ): RefObject<T> {
@@ -142,9 +127,6 @@ export function useClickOutside<T extends HTMLElement>(
   return ref
 }
 
-/**
- * Hook for typing animation effect
- */
 export function useTypingEffect(words: string[], typingSpeed = 100, deletingSpeed = 50, delay = 2000) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [currentText, setCurrentText] = useState('')

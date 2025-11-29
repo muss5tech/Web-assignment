@@ -1,15 +1,11 @@
+import { UIButton } from '@/components/ui';
+import { AchievementDialog, AchievementFilters, AchievementsTable, fetchAchievements, selectAchievementsLoading } from '@/features/achievements';
 import { cn } from '@/utils/helpers';
 import { Add } from '@mui/icons-material';
 import { Box, CircularProgress, Container } from '@mui/material';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
-import UIButton from '../components/ui/UIButton';
-import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
-import { fetchAchievements } from '../features/achievements/achievements.thunks';
-import AchievementDialog from '../features/achievements/components/AchievementDialog';
-import AchievementFilters from '../features/achievements/components/AchievementFilters';
-import AchievementsTable from '../features/achievements/components/AchievementsTable';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const AchievementsPage = () => {
