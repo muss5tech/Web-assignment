@@ -26,7 +26,7 @@ const fieldSx: SxProps<Theme> = {
       borderRadius: '0.5rem',
     },
     '&:hover fieldset': {
-      borderColor: 'rgb(129,140,248)', // accent hover
+      borderColor: 'rgb(129,140,248)',
     },
     '&.Mui-focused fieldset': {
       borderColor: 'rgb(129,140,248)',
@@ -60,7 +60,7 @@ const AchievementFilters = () => {
   const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
   const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime);
 
-  const handleClearFilters = () => {  
+  const handleClearFilters = () => {
     setSearch('');
     setCategory('');
     setStatus('');
@@ -153,12 +153,26 @@ const AchievementFilters = () => {
           </Grid>
           <Grid size={{ xs: 12, md: 1 }} />
         </Grid>
-        <Box mt={2} display="flex" gap={2}>
-          <UIButton variant="outline" onClick={handleClearFilters}>
+        <Box
+          mt={2}
+          display="flex"
+          flexDirection={{ xs: 'column', sm: 'row' }}
+          gap={{ xs: 1.5, sm: 2 }}
+        >
+          <UIButton
+            variant="outline"
+            onClick={handleClearFilters}
+            className="w-full sm:w-auto"
+          >
             <Clear />
             Clear
           </UIButton>
-          <UIButton variant="primary" onClick={() => {}}>
+
+          <UIButton
+            variant="primary"
+            onClick={() => { }}
+            className="w-full sm:w-auto"
+          >
             Search
           </UIButton>
         </Box>

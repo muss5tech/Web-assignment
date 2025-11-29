@@ -23,15 +23,15 @@ function SectionTitle({
 
   return (
     <AnimatedSection
-      className={clsx('mb-12', alignments[align], className)}
+      className={clsx('mb-8 xs:mb-10 sm:mb-12', alignments[align], className)}
       animation="fade-in-up"
       {...props}
     >
-      <h2 className="font-display text-3xl md:text-4xl font-bold text-light-text-primary dark:text-foreground-primary mb-3">
+      <h2 className="font-display text-2xl xs:text-3xl md:text-4xl font-bold text-light-text-primary dark:text-foreground-primary mb-2 xs:mb-3">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-light-text-secondary dark:text-foreground-secondary text-lg max-w-2xl">
+        <p className="text-light-text-secondary dark:text-foreground-secondary text-base xs:text-lg max-w-2xl">
           {subtitle}
         </p>
       )}

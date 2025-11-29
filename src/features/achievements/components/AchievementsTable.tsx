@@ -185,10 +185,11 @@ const AchievementsTable = () => {
 
   return (
     <Box sx={tableStyles.container}>
-      <TableContainer>
+      <TableContainer sx={{ overflowX: 'auto' }}>
         <Table
           size="small"
           sx={{
+            minWidth: 800,
             '& thead tr': tableStyles.headerRow,
             '& thead th': tableStyles.headerCell,
             '& tbody tr': {

@@ -25,7 +25,7 @@ export function LoadingScreen() {
   const Logo = () => (
     <div className="relative mb-8">
       <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary flex items-center justify-center animate-pulse">
-        <span className="text-4xl font-display font-bold text-white">L</span>
+        <span className="text-4xl font-display font-bold text-white">M</span>
       </div>
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-primary to-accent-secondary blur-xl opacity-50 animate-pulse" />
     </div>
