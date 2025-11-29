@@ -1,18 +1,22 @@
 import { cn } from '@/utils/helpers';
+import { Add } from '@mui/icons-material';
 import { Box, CircularProgress, Container } from '@mui/material';
 import { NuqsAdapter } from 'nuqs/adapters/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
 import ThemeToggle from '../components/ThemeToggle';
-import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
-import { fetchAchievements } from '../features/achievements/achievements.thunks';
 import AchievementFilters from '../features/achievements/components/AchievementFilters';
 import AchievementsTable from '../features/achievements/components/AchievementsTable';
+import AchievementDialog from '../features/achievements/components/AchievementDialog';
+import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
+import { fetchAchievements } from '../features/achievements/achievements.thunks';
+import UIButton from '../components/ui/UIButton';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const AchievementsPage = () => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectAchievementsLoading);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAchievements());
@@ -50,16 +54,30 @@ const AchievementsPage = () => {
           <Box>
             <h4
               className={cn(
-                'text-center text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-bold mb-6'
+                'text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-bold'
               )}
             >
-              <span className="gradient-text"> My Achievements</span>
+              <span className="gradient-text">My Achievements</span>
             </h4>
           </Box>
-          <ThemeToggle />
+          <Box display="flex" alignItems="center" gap={2}>
+            <ThemeToggle />
+            <UIButton
+              variant="primary"
+              size="md"
+              onClick={() => setOpenDialog(true)}
+            >
+              <Add className="w-4 h-4" />
+              Add Achievement
+            </UIButton>
+          </Box>
         </Box>
         <AchievementFilters />
         <AchievementsTable />
+        <AchievementDialog
+          open={openDialog}
+          onClose={() => setOpenDialog(false)}
+        />
       </Container>
     </NuqsAdapter>
   );

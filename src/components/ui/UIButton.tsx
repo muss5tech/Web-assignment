@@ -1,5 +1,5 @@
-import { type ButtonHTMLAttributes, forwardRef } from 'react';
 import clsx from 'clsx';
+import { type ButtonHTMLAttributes, forwardRef } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const UIButton = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -36,19 +36,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const sizes = {
       sm: 'px-3 py-1.5 text-sm gap-1.5',
-      md: 'px-5 py-2.5 text-base gap-2',
+      md: 'px-5 py-[6px] text-base gap-2',
       lg: 'px-7 py-3 text-lg gap-2.5',
     };
 
     return (
       <button
         ref={ref}
-        className={clsx(
-          baseStyles,
-          variants[variant],
-          sizes[size],
-          className
-        )}
+        className={clsx(baseStyles, variants[variant], sizes[size], className)}
         disabled={disabled || isLoading}
         {...props}
       >
@@ -84,6 +79,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-Button.displayName = 'Button';
+UIButton.displayName = 'Button';
 
-export default Button;
+export default UIButton;

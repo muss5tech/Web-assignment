@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Autocomplete,
+  Button as MuiButton,
   Chip,
   Dialog,
   DialogActions,
@@ -10,24 +11,23 @@ import {
   FormHelperText,
   Grid,
   MenuItem,
-  Button as MuiButton,
   TextField,
 } from '@mui/material';
 import dayjs from 'dayjs';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import Button from '../../../components/ui/Button';
 import {
   AchievementCategory,
   AchievementStatus,
   TechStack,
 } from '../../../data/achievements';
+import UIButton from '../../../components/ui/UIButton';
 import { useAppDispatch } from '../../../store/hooks';
-import { createAchievement } from '../achievements.thunks';
 import {
   AchievementFormData,
   achievementSchema,
 } from '../schema/achievement.schema';
+import { createAchievement } from '../achievements.thunks';
 
 interface AchievementDialogProps {
   open: boolean;
@@ -82,7 +82,7 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           borderRadius: 4,
           border: '1px solid rgba(148,163,184,0.4)',
           background:
-            'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 0%), rgba(15,23,42,0.98)',
+            'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%), rgba(15,23,42,0.98)',
           boxShadow:
             '0 24px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
         },
@@ -274,9 +274,9 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           >
             Cancel
           </MuiButton>
-          <Button type="submit" variant="primary" disabled={isSubmitting}>
+          <UIButton type="submit" variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Creating...' : 'Create'}
-          </Button>
+          </UIButton>
         </DialogActions>
       </form>
     </Dialog>

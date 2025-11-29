@@ -1,12 +1,47 @@
-import { Add, Clear } from '@mui/icons-material';
-import { Box, Button, Grid, MenuItem, Paper, TextField } from '@mui/material';
+import { Clear } from '@mui/icons-material';
+import {
+  Box,
+  Grid,
+  MenuItem,
+  Paper,
+  SxProps,
+  TextField,
+  Theme,
+} from '@mui/material';
+
+import UIButton from '@/components/ui/UIButton';
 import { parseAsIsoDateTime, parseAsString, useQueryState } from 'nuqs';
-import { useState } from 'react';
 import {
   AchievementCategory,
   AchievementStatus,
 } from '../../../data/achievements';
-import AchievementDialog from './AchievementDialog';
+
+const fieldSx: SxProps<Theme> = {
+  '& .MuiOutlinedInput-root': {
+    color: 'rgb(226,232,240)', // text color similar to UIButton outline
+    borderRadius: '0.5rem', // rounded-lg (8px) to match UIButton
+    '& fieldset': {
+      borderColor: 'rgba(99,102,241,0.5)', // accent-primary/50
+      borderRadius: '0.5rem', // rounded-lg (8px) to match UIButton
+    },
+    '&:hover fieldset': {
+      borderColor: 'rgb(129,140,248)', // accent hover
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'rgb(129,140,248)',
+      boxShadow: '0 0 0 1px rgba(99,102,241,0.7)',
+    },
+  },
+  '& .MuiInputLabel-root': {
+    color: 'rgba(148,163,184,0.9)',
+    '&.Mui-focused': {
+      color: 'rgb(129,140,248)',
+    },
+  },
+  '& .MuiSelect-icon': {
+    color: 'rgb(129,140,248)',
+  },
+};
 
 const AchievementFilters = () => {
   const [search, setSearch] = useQueryState(
@@ -23,7 +58,6 @@ const AchievementFilters = () => {
   );
   const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
   const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime);
-  const [openDialog, setOpenDialog] = useState(false);
 
   const handleClearFilters = () => {
     setSearch('');
@@ -61,6 +95,7 @@ const AchievementFilters = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search achievements..."
+              sx={fieldSx}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 2 }}>
@@ -71,6 +106,7 @@ const AchievementFilters = () => {
               label="Category"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              sx={fieldSx}
             >
               <MenuItem value="">All Categories</MenuItem>
               {Object.values(AchievementCategory).map((cat) => (
@@ -88,6 +124,7 @@ const AchievementFilters = () => {
               label="Status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
+              sx={fieldSx}
             >
               <MenuItem value="">All Status</MenuItem>
               {Object.values(AchievementStatus).map((stat) => (
@@ -110,6 +147,7 @@ const AchievementFilters = () => {
               slotProps={{
                 inputLabel: { shrink: true },
               }}
+              sx={fieldSx}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 2 }}>
@@ -125,33 +163,21 @@ const AchievementFilters = () => {
               slotProps={{
                 inputLabel: { shrink: true },
               }}
+              sx={fieldSx}
             />
           </Grid>
-          <Grid size={{ xs: 12, md: 1 }}>
-            <Button
-              fullWidth
-              variant="outlined"
-              startIcon={<Clear />}
-              onClick={handleClearFilters}
-            >
-              Clear
-            </Button>
-          </Grid>
+          <Grid size={{ xs: 12, md: 1 }} />
         </Grid>
-        <Box mt={2}>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setOpenDialog(true)}
-          >
-            Add Achievement
-          </Button>
+        <Box mt={2} display="flex" gap={2}>
+          <UIButton variant="outline" onClick={handleClearFilters}>
+            <Clear />
+            Clear
+          </UIButton>
+          <UIButton variant="primary" onClick={() => {}}>
+            Search
+          </UIButton>
         </Box>
       </Paper>
-      <AchievementDialog
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-      />
     </>
   );
 };
