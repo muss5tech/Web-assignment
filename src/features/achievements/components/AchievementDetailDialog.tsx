@@ -136,18 +136,79 @@ const AchievementDetailDialog = ({
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      PaperProps={{
-        sx: dialogStyles.paper,
-      }}
+      sx={dialogStyles.paper}
     >
       <DialogTitle sx={dialogStyles.title}>
         {isEditMode ? 'Edit Achievement' : 'Achievement Details'}
       </DialogTitle>
 
       <DialogContent sx={{ pt: 2 }}>
-          {!isEditMode ? (
-            <Box>
-              <Box mb={3}>
+        {!isEditMode ? (
+          <Box>
+            <Box mb={3}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(71,85,105)'
+                      : 'rgb(148,163,184)',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                  fontWeight: 600,
+                }}
+              >
+                Title
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 600,
+                  mt: 0.5,
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(15,23,42)'
+                      : 'rgb(226,232,240)',
+                }}
+              >
+                {achievement.title}
+              </Typography>
+            </Box>
+
+            <Divider sx={{ my: 2 }} />
+
+            <Box mb={3}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(71,85,105)'
+                      : 'rgb(148,163,184)',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                  fontWeight: 600,
+                }}
+              >
+                Description
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  mt: 1,
+                  lineHeight: 1.7,
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(51,65,85)'
+                      : 'rgb(203,213,225)',
+                }}
+              >
+                {achievement.description}
+              </Typography>
+            </Box>
+
+            <Grid container spacing={2} mb={3}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Typography
                   variant="caption"
                   sx={{
@@ -160,137 +221,18 @@ const AchievementDetailDialog = ({
                     fontWeight: 600,
                   }}
                 >
-                  Title
+                  Category
                 </Typography>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    mt: 0.5,
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(15,23,42)'
-                        : 'rgb(226,232,240)',
-                  }}
-                >
-                  {achievement.title}
-                </Typography>
-              </Box>
-
-              <Divider sx={{ my: 2 }} />
-
-              <Box mb={3}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(71,85,105)'
-                        : 'rgb(148,163,184)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.5,
-                    fontWeight: 600,
-                  }}
-                >
-                  Description
-                </Typography>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    mt: 1,
-                    lineHeight: 1.7,
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(51,65,85)'
-                        : 'rgb(203,213,225)',
-                  }}
-                >
-                  {achievement.description}
-                </Typography>
-              </Box>
-
-              <Grid container spacing={2} mb={3}>
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? 'rgb(71,85,105)'
-                          : 'rgb(148,163,184)',
-                      textTransform: 'uppercase',
-                      letterSpacing: 0.5,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Category
-                  </Typography>
-                  <Box mt={1}>
-                    <Chip
-                      label={achievement.category}
-                      color={categoryColors[achievement.category]}
-                      size="small"
-                    />
-                  </Box>
-                </Grid>
-
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? 'rgb(71,85,105)'
-                          : 'rgb(148,163,184)',
-                      textTransform: 'uppercase',
-                      letterSpacing: 0.5,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Status
-                  </Typography>
-                  <Box mt={1}>
-                    <Chip
-                      label={achievement.status}
-                      color={statusColors[achievement.status]}
-                      size="small"
-                    />
-                  </Box>
-                </Grid>
-
-                <Grid size={{ xs: 12, sm: 6 }}>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? 'rgb(71,85,105)'
-                          : 'rgb(148,163,184)',
-                      textTransform: 'uppercase',
-                      letterSpacing: 0.5,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Date
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mt: 1,
-                      color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? 'rgb(51,65,85)'
-                          : 'rgb(203,213,225)',
-                    }}
-                  >
-                    {dayjs(achievement.date).format('MMMM DD, YYYY')}
-                  </Typography>
-                </Grid>
+                <Box mt={1}>
+                  <Chip
+                    label={achievement.category}
+                    color={categoryColors[achievement.category]}
+                    size="small"
+                  />
+                </Box>
               </Grid>
 
-              <Divider sx={{ my: 2 }} />
-
-              <Box mb={3}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <Typography
                   variant="caption"
                   sx={{
@@ -303,56 +245,112 @@ const AchievementDetailDialog = ({
                     fontWeight: 600,
                   }}
                 >
-                  Impact
+                  Status
+                </Typography>
+                <Box mt={1}>
+                  <Chip
+                    label={achievement.status}
+                    color={statusColors[achievement.status]}
+                    size="small"
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? 'rgb(71,85,105)'
+                        : 'rgb(148,163,184)',
+                    textTransform: 'uppercase',
+                    letterSpacing: 0.5,
+                    fontWeight: 600,
+                  }}
+                >
+                  Date
                 </Typography>
                 <Typography
-                  variant="body1"
+                  variant="body2"
                   sx={{
                     mt: 1,
-                    lineHeight: 1.7,
                     color: (theme) =>
                       theme.palette.mode === 'light'
                         ? 'rgb(51,65,85)'
                         : 'rgb(203,213,225)',
                   }}
                 >
-                  {achievement.impact}
+                  {dayjs(achievement.date).format('MMMM DD, YYYY')}
                 </Typography>
-              </Box>
+              </Grid>
+            </Grid>
 
-              {achievement.techStack && achievement.techStack.length > 0 && (
-                <Box>
-                  <Typography
-                    variant="caption"
-                    sx={{
-                      color: (theme) =>
-                        theme.palette.mode === 'light'
-                          ? 'rgb(71,85,105)'
-                          : 'rgb(148,163,184)',
-                      textTransform: 'uppercase',
-                      letterSpacing: 0.5,
-                      fontWeight: 600,
-                    }}
-                  >
-                    Tech Stack
-                  </Typography>
-                  <Box display="flex" flexWrap="wrap" gap={1} mt={1}>
-                    {achievement.techStack.map((tech, index) => (
-                      <Chip
-                        key={index}
-                        label={tech}
-                        size="small"
-                        variant="outlined"
-                      />
-                    ))}
-                  </Box>
-                </Box>
-              )}
+            <Divider sx={{ my: 2 }} />
+
+            <Box mb={3}>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(71,85,105)'
+                      : 'rgb(148,163,184)',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                  fontWeight: 600,
+                }}
+              >
+                Impact
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  mt: 1,
+                  lineHeight: 1.7,
+                  color: (theme) =>
+                    theme.palette.mode === 'light'
+                      ? 'rgb(51,65,85)'
+                      : 'rgb(203,213,225)',
+                }}
+              >
+                {achievement.impact}
+              </Typography>
             </Box>
-          ) : (
-            <form id="edit-achievement-form" onSubmit={handleSubmit(onSubmit)}>
-              <Grid container spacing={3}>
-              <Grid size={{ xs: 12 }}>
+
+            {achievement.techStack && achievement.techStack.length > 0 && (
+              <Box>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: (theme) =>
+                      theme.palette.mode === 'light'
+                        ? 'rgb(71,85,105)'
+                        : 'rgb(148,163,184)',
+                    textTransform: 'uppercase',
+                    letterSpacing: 0.5,
+                    fontWeight: 600,
+                  }}
+                >
+                  Tech Stack
+                </Typography>
+                <Box display="flex" flexWrap="wrap" gap={1} mt={1}>
+                  {achievement.techStack.map((tech, index) => (
+                    <Chip
+                      key={index}
+                      label={tech}
+                      size="small"
+                      variant="outlined"
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </Box>
+        ) : (
+          <form id="edit-achievement-form" onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={3}>
+              <Grid sx={{ pt: 2 }} size={{ xs: 12 }}>
                 <Controller
                   name="title"
                   control={control}
@@ -512,45 +510,45 @@ const AchievementDetailDialog = ({
                   )}
                 />
               </Grid>
-              </Grid>
-            </form>
-          )}
+            </Grid>
+          </form>
+        )}
       </DialogContent>
 
-        <DialogActions sx={{ px: 3, pb: 3, pt: 1.5 }}>
-          {!isEditMode ? (
-            <>
-              <MuiButton
-                type="button"
-                onClick={handleClose}
-                sx={dialogStyles.cancelButton}
-              >
-                Close
-              </MuiButton>
-              <UIButton type="button" variant="primary" onClick={handleEditToggle}>
-                Edit
-              </UIButton>
-            </>
-          ) : (
-            <>
-              <MuiButton
-                type="button"
-                onClick={handleEditToggle}
-                disabled={isSubmitting}
-                sx={dialogStyles.cancelButton}
-              >
-                Cancel
-              </MuiButton>
-              <UIButton
-                type="submit"
-                form="edit-achievement-form"
-                variant="primary"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Saving...' : 'Save'}
-              </UIButton>
-            </>
-          )}
+      <DialogActions sx={{ px: 3, pb: 3, pt: 1.5 }}>
+        {!isEditMode ? (
+          <>
+            <MuiButton
+              type="button"
+              onClick={handleClose}
+              sx={dialogStyles.cancelButton}
+            >
+              Close
+            </MuiButton>
+            <UIButton type="button" variant="primary" onClick={handleEditToggle}>
+              Edit
+            </UIButton>
+          </>
+        ) : (
+          <>
+            <MuiButton
+              type="button"
+              onClick={handleEditToggle}
+              disabled={isSubmitting}
+              sx={dialogStyles.cancelButton}
+            >
+              Cancel
+            </MuiButton>
+            <UIButton
+              type="submit"
+              form="edit-achievement-form"
+              variant="primary"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Saving...' : 'Save'}
+            </UIButton>
+          </>
+        )}
       </DialogActions>
     </Dialog>
   );

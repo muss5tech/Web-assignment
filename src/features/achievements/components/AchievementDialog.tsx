@@ -27,6 +27,7 @@ import {
   AchievementFormData,
   achievementSchema,
 } from '../schema/achievement.schema';
+import { dialogStyles } from '../styles/achievementStyles';
 
 interface AchievementDialogProps {
   open: boolean;
@@ -76,24 +77,7 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: 3,
-          border: (theme) =>
-            theme.palette.mode === 'light'
-              ? '1px solid rgba(203,213,225,0.8)'
-              : '1px solid rgba(148,163,184,0.4)',
-          background: (theme) =>
-            theme.palette.mode === 'light'
-              ? 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))'
-              : 'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%), rgba(15,23,42,0.98)',
-          boxShadow: (theme) =>
-            theme.palette.mode === 'light'
-              ? '0 8px 32px rgba(148,163,184,0.2), 0 0 0 1px rgba(203,213,225,0.3)'
-              : '0 24px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
-          overflow: 'hidden',
-        },
-      }}
+      sx={dialogStyles.paper}
     >
       <Box
         sx={{

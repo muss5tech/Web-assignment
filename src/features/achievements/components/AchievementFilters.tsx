@@ -11,6 +11,7 @@ import {
 
 import UIButton from '@/components/ui/UIButton';
 import { parseAsIsoDateTime, parseAsString, useQueryState } from 'nuqs';
+import { useState } from 'react';
 import {
   AchievementCategory,
   AchievementStatus,
@@ -45,27 +46,52 @@ const fieldSx: SxProps<Theme> = {
 };
 
 const AchievementFilters = () => {
-  const [search, setSearch] = useQueryState(
+  const [searchParam, setSearchParam] = useQueryState(
     'search',
     parseAsString.withDefault('')
   );
-  const [category, setCategory] = useQueryState(
+  const [categoryParam, setCategoryParam] = useQueryState(
     'category',
     parseAsString.withDefault('')
   );
-  const [status, setStatus] = useQueryState(
+  const [statusParam, setStatusParam] = useQueryState(
     'status',
     parseAsString.withDefault('')
   );
-  const [dateFrom, setDateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
-  const [dateTo, setDateTo] = useQueryState('dateTo', parseAsIsoDateTime);
+  const [dateFromParam, setDateFromParam] = useQueryState('dateFrom', parseAsIsoDateTime);
+  const [dateToParam, setDateToParam] = useQueryState('dateTo', parseAsIsoDateTime);
+
+  const [localSearch, setLocalSearch] = useState(searchParam);
+  const [localCategory, setLocalCategory] = useState(categoryParam);
+  const [localStatus, setLocalStatus] = useState(statusParam);
+  const [localDateFrom, setLocalDateFrom] = useState(dateFromParam);
+  const [localDateTo, setLocalDateTo] = useState(dateToParam);
+
+  const handleSearch = () => {
+    setSearchParam(localSearch);
+    setCategoryParam(localCategory);
+    setStatusParam(localStatus);
+    setDateFromParam(localDateFrom);
+    setDateToParam(localDateTo);
+  };
 
   const handleClearFilters = () => {
-    setSearch('');
-    setCategory('');
-    setStatus('');
-    setDateFrom(null);
-    setDateTo(null);
+    setLocalSearch('');
+    setLocalCategory('');
+    setLocalStatus('');
+    setLocalDateFrom(null);
+    setLocalDateTo(null);
+    setSearchParam('');
+    setCategoryParam('');
+    setStatusParam('');
+    setDateFromParam(null);
+    setDateToParam(null);
+  };
+
+  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   return (
@@ -77,8 +103,9 @@ const AchievementFilters = () => {
               fullWidth
               size="small"
               label="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+              onKeyUp={handleSearchKeyPress}
               placeholder="Search achievements..."
               sx={fieldSx}
             />
@@ -89,8 +116,8 @@ const AchievementFilters = () => {
               size="small"
               select
               label="Category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={localCategory}
+              onChange={(e) => setLocalCategory(e.target.value)}
               sx={fieldSx}
             >
               <MenuItem value="">All Categories</MenuItem>
@@ -107,8 +134,8 @@ const AchievementFilters = () => {
               size="small"
               select
               label="Status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              value={localStatus}
+              onChange={(e) => setLocalStatus(e.target.value)}
               sx={fieldSx}
             >
               <MenuItem value="">All Status</MenuItem>
@@ -125,9 +152,9 @@ const AchievementFilters = () => {
               size="small"
               type="date"
               label="Date From"
-              value={dateFrom ? dateFrom.toISOString().split('T')[0] : ''}
+              value={localDateFrom ? localDateFrom.toISOString().split('T')[0] : ''}
               onChange={(e) =>
-                setDateFrom(e.target.value ? new Date(e.target.value) : null)
+                setLocalDateFrom(e.target.value ? new Date(e.target.value) : null)
               }
               slotProps={{
                 inputLabel: { shrink: true },
@@ -141,9 +168,9 @@ const AchievementFilters = () => {
               size="small"
               type="date"
               label="Date To"
-              value={dateTo ? dateTo.toISOString().split('T')[0] : ''}
+              value={localDateTo ? localDateTo.toISOString().split('T')[0] : ''}
               onChange={(e) =>
-                setDateTo(e.target.value ? new Date(e.target.value) : null)
+                setLocalDateTo(e.target.value ? new Date(e.target.value) : null)
               }
               slotProps={{
                 inputLabel: { shrink: true },
@@ -170,7 +197,7 @@ const AchievementFilters = () => {
 
           <UIButton
             variant="primary"
-            onClick={() => { }}
+            onClick={handleSearch}
             className="w-full sm:w-auto"
           >
             Search
