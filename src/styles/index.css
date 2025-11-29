@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
 @layer base {
   * {
     @apply box-border;
@@ -11,21 +10,24 @@
   html {
     @apply scroll-smooth;
     scrollbar-width: thin;
+    scrollbar-color: #6366f1 rgba(241, 245, 249, 0.5);
+  }
+
+  html.dark {
     scrollbar-color: #6366f1 #12121a;
   }
 
   body {
-    @apply bg-background-primary text-foreground-primary font-body antialiased;
+    @apply bg-light-bg-primary text-light-text-primary dark:bg-background-primary dark:text-foreground-primary font-body antialiased;
     overflow-x: hidden;
   }
 
-  /* Custom scrollbar for webkit browsers */
   ::-webkit-scrollbar {
     width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background-secondary;
+    @apply bg-light-bg-secondary dark:bg-background-secondary;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -36,30 +38,20 @@
     @apply bg-accent-secondary;
   }
 
-  /* Selection styles */
   ::selection {
-    @apply bg-accent-primary/30 text-foreground-primary;
-  }
-
-  /* Focus styles */
-  :focus-visible {
-    @apply outline-none ring-2 ring-accent-primary ring-offset-2 ring-offset-background-primary;
+    @apply bg-accent-primary/30 text-light-text-primary dark:text-foreground-primary;
   }
 }
 
-/* Custom component styles */
 @layer components {
-  /* Glass effect */
   .glass {
-    @apply bg-background-card/80 backdrop-blur-md border border-white/5;
+    @apply bg-light-bg-card/80 dark:bg-background-card/80 backdrop-blur-md border border-light-border-secondary dark:border-border-secondary;
   }
 
-  /* Gradient text */
   .gradient-text {
     @apply bg-gradient-accent bg-clip-text text-transparent;
   }
 
-  /* Glowing border */
   .glow-border {
     @apply relative;
   }
@@ -73,12 +65,10 @@
     @apply opacity-100 blur-sm;
   }
 
-  /* Section container */
   .section-container {
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Card hover effect */
   .card-hover {
     @apply transition-all duration-300 ease-out;
   }
@@ -87,7 +77,6 @@
     @apply -translate-y-1 shadow-card-hover;
   }
 
-  /* Animated underline */
   .animated-underline {
     @apply relative;
   }
@@ -101,7 +90,6 @@
     @apply w-full;
   }
 
-  /* Status indicator */
   .status-online {
     @apply relative flex items-center gap-2;
   }
@@ -123,30 +111,26 @@
     }
   }
 
-  /* Tech badge */
   .tech-badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium
-           bg-background-hover border border-white/10 transition-all duration-200;
+           bg-light-bg-hover dark:bg-background-hover border border-light-border-primary dark:border-border-primary transition-all duration-200;
   }
 
   .tech-badge:hover {
     @apply border-accent-primary/50 shadow-glow-sm;
   }
 
-  /* Timeline styles */
   .timeline-line {
     @apply absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent-primary via-accent-secondary to-transparent;
   }
 
   .timeline-dot {
-    @apply absolute -left-[5px] w-[11px] h-[11px] rounded-full bg-accent-primary border-2 border-background-primary
+    @apply absolute -left-[5px] w-[11px] h-[11px] rounded-full bg-accent-primary border-2 border-light-bg-primary dark:border-background-primary
            shadow-glow-sm;
   }
 }
 
-/* Custom utilities */
 @layer utilities {
-  /* Animation delays */
   .animation-delay-100 { animation-delay: 100ms; }
   .animation-delay-200 { animation-delay: 200ms; }
   .animation-delay-300 { animation-delay: 300ms; }
@@ -156,7 +140,6 @@
   .animation-delay-700 { animation-delay: 700ms; }
   .animation-delay-800 { animation-delay: 800ms; }
 
-  /* Hide scrollbar */
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -166,19 +149,16 @@
     display: none;
   }
 
-  /* Text balance */
   .text-balance {
     text-wrap: balance;
   }
 
-  /* Gradient mask */
   .mask-gradient-b {
     mask-image: linear-gradient(to bottom, black 60%, transparent);
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
   }
 }
 
-/* Noise texture overlay */
 .noise-overlay {
   position: fixed;
   top: 0;

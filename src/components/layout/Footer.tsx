@@ -11,11 +11,11 @@ function Footer() {
   };
 
   return (
-    <footer className="border-t border-white/5 bg-background-secondary/50">
+    <footer className="border-t border-light-border-secondary dark:border-border-secondary bg-light-bg-secondary/50 dark:bg-background-secondary/50">
       <div className="section-container py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <p className="text-foreground-muted text-sm">
+          <p className="text-light-text-muted dark:text-foreground-muted text-sm">
             © {currentYear} {profile.fullName}. All rights reserved.
           </p>
 
@@ -31,7 +31,7 @@ function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground-muted hover:text-accent-primary transition-colors duration-200"
+                    className="text-light-text-muted dark:text-foreground-muted hover:text-accent-primary transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon className="w-5 h-5" />
@@ -41,7 +41,7 @@ function Footer() {
           </div>
 
           {/* Built with */}
-          <p className="text-foreground-muted text-sm">
+          <p className="text-light-text-muted dark:text-foreground-muted text-sm">
             Built with{' '}
             <span className="text-accent-primary">React</span> &{' '}
             <span className="text-accent-secondary">TailwindCSS</span>

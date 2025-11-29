@@ -21,15 +21,15 @@ const UIButton = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-lg focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
       primary:
         'bg-gradient-accent text-white hover:opacity-90 hover:shadow-glow-md active:scale-[0.98]',
       secondary:
-        'bg-background-card text-foreground-primary border border-white/10 hover:border-accent-primary/50 hover:bg-background-hover',
+        'bg-light-bg-card dark:bg-background-card text-light-text-primary dark:text-foreground-primary border border-gray-300 dark:border-white/10 hover:border-accent-primary/50 hover:bg-light-bg-hover dark:hover:bg-background-hover',
       ghost:
-        'text-foreground-secondary hover:text-foreground-primary hover:bg-background-hover',
+        'text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary hover:bg-light-bg-hover dark:hover:bg-background-hover',
       outline:
         'border border-accent-primary/50 text-accent-primary hover:bg-accent-primary/10 hover:border-accent-primary',
     };

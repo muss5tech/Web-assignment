@@ -29,10 +29,10 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       'inline-flex items-center gap-1.5 font-medium rounded-full transition-all duration-200';
 
     const variants = {
-      default: 'bg-background-hover border border-white/10',
+      default: 'bg-light-bg-hover dark:bg-background-hover border border-light-border-primary dark:border-border-primary text-light-text-secondary dark:text-foreground-secondary',
       primary: 'bg-accent-primary/20 text-accent-primary border border-accent-primary/30',
       secondary: 'bg-accent-secondary/20 text-accent-secondary border border-accent-secondary/30',
-      outline: 'border border-white/20 bg-transparent',
+      outline: 'border border-light-border-primary dark:border-border-primary bg-transparent text-light-text-secondary dark:text-foreground-secondary',
     };
 
     const sizes = {

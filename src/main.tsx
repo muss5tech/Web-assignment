@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,6 +12,14 @@ import { useAppSelector } from './store/hooks';
 const Root = () => {
   const mode = useAppSelector((state) => state.theme.mode);
   const theme = useMemo(() => createAppTheme(mode), [mode]);
+
+  useEffect(() => {
+    if (mode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [mode]);
 
   return (
     <ThemeProvider theme={theme}>

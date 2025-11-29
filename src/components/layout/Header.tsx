@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import { MenuIcon, CloseIcon } from '../Icons';
+import ThemeToggle from '../ThemeToggle';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '#home', type: 'hash' as const },
+  { label: 'Tech Stack', href: '#tech-stack', type: 'hash' as const },
+  { label: 'Experience', href: '#experience', type: 'hash' as const },
+  { label: 'Projects', href: '#projects', type: 'hash' as const },
+  { label: 'Contact', href: '#contact', type: 'hash' as const },
+  { label: 'Achievements', href: '/achievements', type: 'route' as const },
 ];
 
 function Header() {
@@ -46,7 +48,7 @@ function Header() {
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background-primary/60 backdrop-blur-lg py-3'
+          ? 'bg-light-bg-primary/90 dark:bg-background-primary/60 backdrop-blur-lg py-2 shadow-sm dark:shadow-none'
           : 'bg-transparent py-3'
       )}
     >
@@ -61,24 +63,36 @@ function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex items-center gap-6">
+            <ul className="flex items-center gap-8">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  {item.type === 'route' ? (
+                    <Link
+                      to={item.href}
+                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <ThemeToggle />
+          </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground-secondary hover:text-foreground-primary transition-colors"
+            className="md:hidden p-2 text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -93,22 +107,36 @@ function Header() {
         <div
           className={clsx(
             'md:hidden overflow-hidden transition-all duration-300',
-            isMobileMenuOpen ? 'max-h-64 mt-4' : 'max-h-0'
+            isMobileMenuOpen ? 'max-h-81 mt-4' : 'max-h-0'
           )}
         >
-          <ul className="flex flex-col gap-4 py-4 border-t border-white/10">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="flex flex-col gap-4 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
+            <ul className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  {item.type === 'route' ? (
+                    <Link
+                      to={item.href}
+                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                    >
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <div className="pt-2 border-t border-light-border-secondary dark:border-border-secondary">
+              <ThemeToggle />
+            </div>
+          </div>
         </div>
       </div>
     </header>

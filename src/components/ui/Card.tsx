@@ -22,9 +22,9 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = 'rounded-xl transition-all duration-300';
 
     const variants = {
-      default: 'bg-background-card border border-white/5',
+      default: 'bg-light-bg-card dark:bg-background-card border border-light-border-secondary dark:border-border-secondary shadow-sm dark:shadow-none',
       glass: 'glass',
-      outline: 'border border-white/10 bg-transparent',
+      outline: 'border border-light-border-primary dark:border-border-primary bg-transparent',
     };
 
     const paddings = {

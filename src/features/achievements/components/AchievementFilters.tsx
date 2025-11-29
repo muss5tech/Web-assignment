@@ -74,16 +74,18 @@ const AchievementFilters = () => {
           p: 3,
           mb: 3,
           borderRadius: 3,
-          border: '1px solid rgba(148,163,184,0.35)',
-          background:
-            'linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,64,175,0.35))',
-          boxShadow:
-            '0 18px 45px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
-          // Override global Tailwind :focus-visible ring to avoid double focus border
-          '& input:focus-visible': {
-            outline: 'none',
-            boxShadow: 'none !important',
-          },
+          border: (theme) =>
+            theme.palette.mode === 'light'
+              ? '1px solid rgba(203,213,225,0.8)'
+              : '1px solid rgba(148,163,184,0.35)',
+          background: (theme) =>
+            theme.palette.mode === 'light'
+              ? 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))'
+              : 'linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,64,175,0.45))',
+          boxShadow: (theme) =>
+            theme.palette.mode === 'light'
+              ? '0 4px 12px rgba(148,163,184,0.15), 0 0 0 1px rgba(203,213,225,0.3)'
+              : '0 18px 45px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
         }}
       >
         <Grid container spacing={2} alignItems="center">
