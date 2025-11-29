@@ -19,10 +19,7 @@ function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -37,107 +34,114 @@ function Header() {
   ) => {
     e.preventDefault();
     const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
     setIsMobileMenuOpen(false);
   };
+
+  const Logo = () => (
+    <Link
+      to="/"
+      className="font-display text-xl xs:text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
+    >
+      Mus.
+    </Link>
+  );
+
+  const DesktopNav = () => (
+    <div className="hidden md:flex items-center gap-4 lg:gap-6">
+      <ul className="flex items-center gap-4 lg:gap-8">
+        {navItems.map((item) => (
+          <li key={item.label}>
+            {item.type === 'route' ? (
+              <Link
+                to={item.href}
+                className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <ThemeToggle />
+    </div>
+  );
+
+  const MobileMenuButton = () => (
+    <button
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      className="md:hidden p-1.5 xs:p-2 text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors"
+      aria-label="Toggle menu"
+    >
+      {isMobileMenuOpen ? (
+        <CloseIcon className="w-5 h-5 xs:w-6 xs:h-6" />
+      ) : (
+        <MenuIcon className="w-5 h-5 xs:w-6 xs:h-6" />
+      )}
+    </button>
+  );
+
+  const MobileNav = () => (
+    <div
+      className={clsx(
+        'md:hidden overflow-hidden transition-all duration-300',
+        isMobileMenuOpen ? 'max-h-81 mt-3 xs:mt-4' : 'max-h-0',
+      )}
+    >
+      <div className="flex flex-col gap-3 xs:gap-4 pt-3 xs:pt-4 border-t border-light-border-secondary dark:border-border-secondary">
+        <ul className="flex flex-col gap-3 xs:gap-4">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              {item.type === 'route' ? (
+                <Link
+                  to={item.href}
+                  className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm xs:text-base font-medium py-1.5 xs:py-2"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm xs:text-base font-medium py-1.5 xs:py-2"
+                >
+                  {item.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+        <div className="pt-1.5 xs:pt-2 border-t border-light-border-secondary dark:border-border-secondary">
+          <ThemeToggle />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <header
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? 'bg-light-bg-primary/90 dark:bg-background-primary/60 backdrop-blur-lg py-2 shadow-sm dark:shadow-none'
           : 'bg-transparent py-3'
       )}
     >
       <div className="section-container">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <Link
-            to="/"
-            className="font-display text-2xl font-bold gradient-text hover:opacity-80 transition-opacity"
-          >
-            Mus.
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <ul className="flex items-center gap-8">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  {item.type === 'route' ? (
-                    <Link
-                      to={item.href}
-                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
-                    >
-                      {item.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <CloseIcon className="w-6 h-6" />
-            ) : (
-              <MenuIcon className="w-6 h-6" />
-            )}
-          </button>
+          <Logo />
+          <DesktopNav />
+          <MobileMenuButton />
         </nav>
-
-        {/* Mobile Navigation */}
-        <div
-          className={clsx(
-            'md:hidden overflow-hidden transition-all duration-300',
-            isMobileMenuOpen ? 'max-h-81 mt-4' : 'max-h-0'
-          )}
-        >
-          <div className="flex flex-col gap-4 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
-            <ul className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <li key={item.label}>
-                  {item.type === 'route' ? (
-                    <Link
-                      to={item.href}
-                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={item.href}
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
-                    >
-                      {item.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-2 border-t border-light-border-secondary dark:border-border-secondary">
-              <ThemeToggle />
-            </div>
-          </div>
-        </div>
+        <MobileNav />
       </div>
     </header>
   );
