@@ -27,11 +27,11 @@ function SectionTitle({
       animation="fade-in-up"
       {...props}
     >
-      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground-primary mb-3">
+      <h2 className="font-display text-3xl md:text-4xl font-bold text-light-text-primary dark:text-foreground-primary mb-3">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-foreground-secondary text-lg max-w-2xl">
+        <p className="text-light-text-secondary dark:text-foreground-secondary text-lg max-w-2xl">
           {subtitle}
         </p>
       )}

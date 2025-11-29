@@ -26,7 +26,7 @@ function TechCategoryCard({
   return (
     <AnimatedSection
       animation="fade-in-up"
-      className="bg-background-card rounded-xl border border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300"
+      className="bg-light-bg-card dark:bg-background-card rounded-xl border border-gray-200 dark:border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300 shadow-sm dark:shadow-none"
     >
       <h3 className="font-mono text-lg font-semibold text-accent-primary mb-4">
         {category.tag}

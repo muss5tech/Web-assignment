@@ -22,7 +22,7 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background-secondary/30">
+    <section id="contact" className="py-20 bg-light-bg-secondary/50 dark:bg-background-secondary/30">
       <div className="section-container">
         <SectionTitle
           title="Let's Work Together"
@@ -55,10 +55,10 @@ function ContactSection() {
                         <Icon className="w-6 h-6 text-accent-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-foreground-muted">
+                        <p className="text-sm text-light-text-muted dark:text-foreground-muted">
                           {social.name}
                         </p>
-                        <p className="font-medium text-foreground-primary group-hover:text-accent-primary transition-colors">
+                        <p className="font-medium text-light-text-primary dark:text-foreground-primary group-hover:text-accent-primary transition-colors">
                           {social.username}
                         </p>
                       </div>
@@ -73,10 +73,10 @@ function ContactSection() {
           <AnimatedSection animation="fade-in-up">
             <Card variant="glass" className="text-center">
               <SparklesIcon className="w-8 h-8 text-accent-primary mx-auto mb-4" />
-              <h3 className="font-display text-xl font-bold text-foreground-primary mb-2">
+              <h3 className="font-display text-xl font-bold text-light-text-primary dark:text-foreground-primary mb-2">
                 View My Resume
               </h3>
-              <p className="text-foreground-secondary text-sm mb-6">
+              <p className="text-light-text-secondary dark:text-foreground-secondary text-sm mb-6">
                 Download or view my complete curriculum vitae with detailed
                 information about my experience, education, and skills.
               </p>
@@ -90,7 +90,7 @@ function ContactSection() {
                   View Online
                 </Button>
               </div>
-              <p className="text-foreground-muted text-xs mt-4">
+              <p className="text-light-text-muted dark:text-foreground-muted text-xs mt-4">
                 Last updated: November 2025
               </p>
             </Card>
@@ -98,7 +98,7 @@ function ContactSection() {
 
           {/* CTA */}
           <AnimatedSection animation="fade-in-up" className="text-center mt-12">
-            <p className="text-foreground-secondary mb-4">
+            <p className="text-light-text-secondary dark:text-foreground-secondary mb-4">
               Prefer email? Reach out directly at
             </p>
             <a

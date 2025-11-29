@@ -26,7 +26,7 @@ function TimelineItem({
       <div className="timeline-dot" />
 
       {/* Content */}
-      <div className="bg-background-card rounded-xl border border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-card">
+      <div className="bg-light-bg-card dark:bg-background-card rounded-xl border border-gray-200 dark:border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-card shadow-sm dark:shadow-none">
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ function TimelineItem({
               <Icon className="w-5 h-5 text-accent-primary" />
             </div>
             <div>
-              <h3 className="font-display text-xl font-bold text-foreground-primary">
+              <h3 className="font-display text-xl font-bold text-light-text-primary dark:text-foreground-primary">
                 {experience.company}
               </h3>
               <p className="text-accent-primary font-medium">
@@ -48,7 +48,7 @@ function TimelineItem({
                 Current
               </span>
             )}
-            <span className="text-foreground-muted text-sm">
+            <span className="text-light-text-muted dark:text-foreground-muted text-sm">
               {experience.period}
             </span>
           </div>
@@ -59,7 +59,7 @@ function TimelineItem({
           {experience.description.map((item, i) => (
             <li
               key={i}
-              className="text-foreground-secondary text-sm leading-relaxed flex gap-2"
+              className="text-light-text-secondary dark:text-foreground-secondary text-sm leading-relaxed flex gap-2"
             >
               <span className="text-accent-primary mt-1.5 flex-shrink-0">
                 •
@@ -71,7 +71,7 @@ function TimelineItem({
 
         {/* Tech Stack */}
         {experience.techStack.length > 0 && (
-          <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+          <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-white/5">
             {experience.techStack.map((tech) => (
               <Badge key={tech} size="sm" variant="outline">
                 {tech}
@@ -86,7 +86,7 @@ function TimelineItem({
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="py-20 bg-background-secondary/30">
+    <section id="experience" className="py-20 bg-light-bg-secondary/50 dark:bg-background-secondary/30">
       <div className="section-container">
         <SectionTitle
           title="Experience"

@@ -48,7 +48,7 @@ function Header() {
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-background-primary/60 backdrop-blur-lg py-2'
+          ? 'bg-light-bg-primary/90 dark:bg-background-primary/60 backdrop-blur-lg py-2 shadow-sm dark:shadow-none'
           : 'bg-transparent py-3'
       )}
     >
@@ -70,7 +70,7 @@ function Header() {
                   {item.type === 'route' ? (
                     <Link
                       to={item.href}
-                      className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
                     >
                       {item.label}
                     </Link>
@@ -78,7 +78,7 @@ function Header() {
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                      className="text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
                     >
                       {item.label}
                     </a>
@@ -92,7 +92,7 @@ function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground-secondary hover:text-foreground-primary transition-colors"
+            className="md:hidden p-2 text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -110,14 +110,14 @@ function Header() {
             isMobileMenuOpen ? 'max-h-81 mt-4' : 'max-h-0'
           )}
         >
-          <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
+          <div className="flex flex-col gap-4 pt-4 border-t border-gray-200 dark:border-white/10">
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.label}>
                   {item.type === 'route' ? (
                     <Link
                       to={item.href}
-                      className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
                     >
                       {item.label}
                     </Link>
@@ -125,7 +125,7 @@ function Header() {
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                      className="block text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
                     >
                       {item.label}
                     </a>
@@ -133,7 +133,7 @@ function Header() {
                 </li>
               ))}
             </ul>
-            <div className="pt-2 border-t border-white/10">
+            <div className="pt-2 border-t border-gray-200 dark:border-white/10">
               <ThemeToggle />
             </div>
           </div>

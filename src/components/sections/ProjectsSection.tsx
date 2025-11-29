@@ -10,17 +10,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <AnimatedSection animation="fade-in-up" className="h-full">
       <Card className="h-full flex flex-col group">
         {/* Project Icon/Preview */}
-        <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-white/5">
+        <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-gray-200 dark:border-white/5">
           <CodeIcon className="w-8 h-8 text-accent-primary" />
         </div>
 
         {/* Title */}
-        <h3 className="font-display text-xl font-bold text-foreground-primary mb-3 group-hover:text-accent-primary transition-colors">
+        <h3 className="font-display text-xl font-bold text-light-text-primary dark:text-foreground-primary mb-3 group-hover:text-accent-primary transition-colors">
           {project.title}
         </h3>
 
         {/* Description */}
-        <p className="text-foreground-secondary text-sm leading-relaxed mb-4 flex-grow">
+        <p className="text-light-text-secondary dark:text-foreground-secondary text-sm leading-relaxed mb-4 flex-grow">
           {project.description}
         </p>
 
@@ -34,13 +34,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+        <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-white/5">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-foreground-secondary hover:text-accent-primary transition-colors"
+              className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
             >
               <ExternalLinkIcon className="w-4 h-4" />
               Live Demo
@@ -51,14 +51,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-foreground-secondary hover:text-accent-primary transition-colors"
+              className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
             >
               <GitHubIcon className="w-4 h-4" />
               Source Code
             </a>
           )}
           {!project.liveUrl && !project.repoUrl && (
-            <span className="text-sm text-foreground-muted italic">
+            <span className="text-sm text-light-text-muted dark:text-foreground-muted italic">
               Private project
             </span>
           )}
@@ -91,7 +91,7 @@ function ProjectsSection() {
         {otherProjects.length > 0 && (
           <>
             <AnimatedSection animation="fade-in-up" className="mb-6">
-              <h3 className="font-display text-xl font-semibold text-foreground-secondary">
+              <h3 className="font-display text-xl font-semibold text-light-text-secondary dark:text-foreground-secondary">
                 Other Projects
               </h3>
             </AnimatedSection>
