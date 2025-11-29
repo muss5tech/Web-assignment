@@ -26,14 +26,15 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectAllAchievements } from '../achievements.selectors';
 import { deleteAchievement, updateAchievement } from '../achievements.thunks';
+import AchievementDetailDialog from './AchievementDetailDialog';
 import AchievementRow from './AchievementRow';
+import { tableStyles, typographyStyles } from '../styles/achievementStyles';
 
 type EditableValue =
   | string
   | AchievementCategory
   | AchievementStatus
   | TechStack[];
-import { tableStyles, typographyStyles } from '../styles/achievementStyles';
 
 interface EditingState {
   id: string;
@@ -55,6 +56,7 @@ const AchievementsTable = () => {
   const [status] = useQueryState('status', parseAsString.withDefault(''));
   const [dateFrom] = useQueryState('dateFrom', parseAsIsoDateTime);
   const [dateTo] = useQueryState('dateTo', parseAsIsoDateTime);
+  const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [editing, setEditing] = useState<EditingState | null>(null);
 
   const filteredAchievements = useMemo(() => {
@@ -92,6 +94,12 @@ const AchievementsTable = () => {
       toast.success(`Achievement "${title}" deleted successfully`);
     } catch {
       toast.error('Failed to delete achievement');
+    }
+  };
+
+  const handleRowClick = (achievement: Achievement) => {
+    if (!editing) {
+      setSelectedAchievement(achievement);
     }
   };
 
@@ -151,6 +159,10 @@ const AchievementsTable = () => {
 
   const handleCancelEdit = () => {
     setEditing(null);
+  };
+
+  const handleCloseDialog = () => {
+    setSelectedAchievement(null);
   };
 
   const paginatedAchievements = filteredAchievements.slice(
@@ -215,6 +227,7 @@ const AchievementsTable = () => {
                 key={achievement.id}
                 achievement={achievement}
                 editing={editing}
+                onRowClick={handleRowClick}
                 onStartEdit={handleEditClick}
                 onChangeEditingValue={(value) =>
                   editing && setEditing({ ...editing, value })
@@ -240,6 +253,12 @@ const AchievementsTable = () => {
           sx={tableStyles.pagination}
         />
       </Box>
+
+      <AchievementDetailDialog
+        open={!!selectedAchievement}
+        achievement={selectedAchievement}
+        onClose={handleCloseDialog}
+      />
     </Box>
   );
 };

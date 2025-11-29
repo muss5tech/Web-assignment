@@ -16,6 +16,7 @@ const UIButton = forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading = false,
       disabled,
       children,
+      type = 'button',
       ...props
     },
     ref
@@ -43,6 +44,7 @@ const UIButton = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type} 
         className={clsx(baseStyles, variants[variant], sizes[size], className)}
         disabled={disabled || isLoading}
         {...props}

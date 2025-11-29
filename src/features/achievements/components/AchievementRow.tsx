@@ -1,5 +1,6 @@
 import { Cancel, Delete, Edit, Save } from '@mui/icons-material';
 import {
+  Autocomplete,
   Box,
   Chip,
   FormControl,
@@ -32,6 +33,7 @@ interface AchievementRowProps {
     field: keyof Achievement;
     value: EditableValue;
   } | null;
+  onRowClick: (achievement: Achievement) => void;
   onStartEdit: (
     id: string,
     field: keyof Achievement,
@@ -60,47 +62,19 @@ const getCategoryColor = (category: AchievementCategory) =>
 const getStatusColor = (status: AchievementStatus) =>
   status === AchievementStatus.Completed ? 'success' : 'warning';
 
-const CategoryChip = ({
-  category,
-  onClick,
-}: {
-  category: AchievementCategory;
-  onClick?: () => void;
-}) => (
+const CategoryChip = ({ category }: { category: AchievementCategory }) => (
   <Chip
     label={category}
     color={getCategoryColor(category)}
     size="small"
-    onClick={onClick}
-    sx={
-      onClick
-        ? {
-            cursor: 'pointer',
-          }
-        : {}
-    }
   />
 );
 
-const StatusChip = ({
-  status,
-  onClick,
-}: {
-  status: AchievementStatus;
-  onClick?: () => void;
-}) => (
+const StatusChip = ({ status }: { status: AchievementStatus }) => (
   <Chip
     label={status}
     color={getStatusColor(status)}
     size="small"
-    onClick={onClick}
-    sx={
-      onClick
-        ? {
-            cursor: 'pointer',
-          }
-        : {}
-    }
   />
 );
 
@@ -124,12 +98,49 @@ const TechStackChips = ({ techStack }: { techStack?: TechStack[] }) => {
 const AchievementRow = ({
   achievement,
   editing,
+  onRowClick,
   onStartEdit,
   onChangeEditingValue,
   onSaveEdit,
   onCancelEdit,
   onDelete,
 }: AchievementRowProps) => {
+  const isEditingRow = editing?.id === achievement.id;
+
+  const handleRowClick = (e: React.MouseEvent) => {
+    if (isEditingRow) return;
+    const target = e.target as HTMLElement;
+    if (
+      target.closest('button') ||
+      target.closest('[role="button"]') ||
+      target.closest('input') ||
+      target.closest('[role="combobox"]')
+    ) {
+      return;
+    }
+    onRowClick(achievement);
+  };
+
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onStartEdit(achievement.id, 'title', achievement.title);
+  };
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDelete(achievement.id, achievement.title);
+  };
+
+  const handleSaveClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onSaveEdit();
+  };
+
+  const handleCancelClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onCancelEdit();
+  };
+
   const renderEditableCell = (
     field: keyof Achievement,
     value: string
@@ -143,6 +154,7 @@ const AchievementRow = ({
           size="small"
           value={editing.value}
           onChange={(e) => onChangeEditingValue(e.target.value)}
+          onClick={(e) => e.stopPropagation()}
           autoFocus
           multiline={field === 'description' || field === 'impact'}
           rows={field === 'description' || field === 'impact' ? 3 : 1}
@@ -152,17 +164,29 @@ const AchievementRow = ({
 
     return (
       <Box
-        onClick={() => onStartEdit(achievement.id, field, value)}
+        onClick={(e) => {
+          if (isEditingRow) {
+            e.stopPropagation();
+            onStartEdit(achievement.id, field, value);
+          }
+        }}
         sx={{
-          cursor: 'pointer',
-          '&:hover': { backgroundColor: 'action.hover' },
+          cursor: isEditingRow ? 'pointer' : 'default',
+          '&:hover': isEditingRow ? { backgroundColor: 'action.hover' } : {},
           p: 1,
           borderRadius: 1,
         }}
       >
         <Typography
           variant="body2"
-          sx={{ maxWidth: field === 'title' ? 200 : 300 }}
+          sx={{
+            maxWidth: field === 'title' ? 200 : field === 'impact' ? 250 : 300,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+          }}
           fontWeight={field === 'title' ? 'medium' : 'normal'}
         >
           {value}
@@ -177,7 +201,7 @@ const AchievementRow = ({
 
     if (isEditing) {
       return (
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small" onClick={(e) => e.stopPropagation()}>
           <Select
             value={editing.value}
             onChange={(e) =>
@@ -196,12 +220,20 @@ const AchievementRow = ({
     }
 
     return (
-      <CategoryChip
-        category={achievement.category}
-        onClick={() =>
-          onStartEdit(achievement.id, 'category', achievement.category)
-        }
-      />
+      <Box
+        onClick={(e) => {
+          if (isEditingRow) {
+            e.stopPropagation();
+            onStartEdit(achievement.id, 'category', achievement.category);
+          }
+        }}
+        sx={{
+          cursor: isEditingRow ? 'pointer' : 'default',
+          p: 1,
+        }}
+      >
+        <CategoryChip category={achievement.category} />
+      </Box>
     );
   };
 
@@ -211,7 +243,7 @@ const AchievementRow = ({
 
     if (isEditing) {
       return (
-        <FormControl fullWidth size="small">
+        <FormControl fullWidth size="small" onClick={(e) => e.stopPropagation()}>
           <Select
             value={editing.value}
             onChange={(e) =>
@@ -230,12 +262,20 @@ const AchievementRow = ({
     }
 
     return (
-      <StatusChip
-        status={achievement.status}
-        onClick={() =>
-          onStartEdit(achievement.id, 'status', achievement.status)
-        }
-      />
+      <Box
+        onClick={(e) => {
+          if (isEditingRow) {
+            e.stopPropagation();
+            onStartEdit(achievement.id, 'status', achievement.status);
+          }
+        }}
+        sx={{
+          cursor: isEditingRow ? 'pointer' : 'default',
+          p: 1,
+        }}
+      >
+        <StatusChip status={achievement.status} />
+      </Box>
     );
   };
 
@@ -250,6 +290,7 @@ const AchievementRow = ({
           type="date"
           value={editing.value}
           onChange={(e) => onChangeEditingValue(e.target.value)}
+          onClick={(e) => e.stopPropagation()}
           autoFocus
         />
       );
@@ -257,29 +298,89 @@ const AchievementRow = ({
 
     return (
       <Box
-        onClick={() => onStartEdit(achievement.id, 'date', achievement.date)}
+        onClick={(e) => {
+          if (isEditingRow) {
+            e.stopPropagation();
+            onStartEdit(achievement.id, 'date', achievement.date);
+          }
+        }}
         sx={{
-          cursor: 'pointer',
-          '&:hover': { backgroundColor: 'action.hover' },
+          cursor: isEditingRow ? 'pointer' : 'default',
+          '&:hover': isEditingRow ? { backgroundColor: 'action.hover' } : {},
           p: 1,
           borderRadius: 1,
         }}
       >
-        {dayjs(achievement.date).format('MMM DD, YYYY')}
+        <Typography variant="body2">
+          {dayjs(achievement.date).format('MMM DD, YYYY')}
+        </Typography>
+      </Box>
+    );
+  };
+
+  const renderTechStackCell = () => {
+    const isEditing =
+      editing?.id === achievement.id && editing?.field === 'techStack';
+
+    if (isEditing) {
+      return (
+        <FormControl fullWidth size="small" onClick={(e) => e.stopPropagation()}>
+          <Autocomplete
+            multiple
+            size="small"
+            options={Object.values(TechStack)}
+            value={(editing.value as TechStack[]) || []}
+            onChange={(_, newValue) => onChangeEditingValue(newValue as TechStack[])}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Select technologies"
+                size="small"
+              />
+            )}
+            renderTags={(value, getTagProps) =>
+              value.map((option, index) => (
+                <Chip
+                  {...getTagProps({ index })}
+                  key={option}
+                  label={option}
+                  size="small"
+                />
+              ))
+            }
+          />
+        </FormControl>
+      );
+    }
+
+    return (
+      <Box
+        onClick={(e) => {
+          if (isEditingRow) {
+            e.stopPropagation();
+            onStartEdit(achievement.id, 'techStack', achievement.techStack || []);
+          }
+        }}
+        sx={{
+          cursor: isEditingRow ? 'pointer' : 'default',
+          '&:hover': isEditingRow ? { backgroundColor: 'action.hover' } : {},
+          p: 1,
+          borderRadius: 1,
+        }}
+      >
+        <TechStackChips techStack={achievement.techStack} />
       </Box>
     );
   };
 
   const renderActionsCell = () => {
-    const isEditingRow = editing?.id === achievement.id;
-
     if (isEditingRow) {
       return (
         <Box display="flex" justifyContent="flex-end" gap={0.5}>
-          <IconButton size="small" color="success" onClick={onSaveEdit}>
+          <IconButton size="small" color="success" onClick={handleSaveClick}>
             <Save fontSize="small" />
           </IconButton>
-          <IconButton size="small" color="error" onClick={onCancelEdit}>
+          <IconButton size="small" color="error" onClick={handleCancelClick}>
             <Cancel fontSize="small" />
           </IconButton>
         </Box>
@@ -291,14 +392,14 @@ const AchievementRow = ({
         <IconButton
           size="small"
           color="primary"
-          onClick={() => onStartEdit(achievement.id, 'title', achievement.title)}
+          onClick={handleEditClick}
         >
           <Edit fontSize="small" />
         </IconButton>
         <IconButton
           size="small"
           color="error"
-          onClick={() => onDelete(achievement.id, achievement.title)}
+          onClick={handleDeleteClick}
         >
           <Delete fontSize="small" />
         </IconButton>
@@ -308,8 +409,10 @@ const AchievementRow = ({
 
   return (
     <TableRow
-      hover
+      hover={!isEditingRow}
+      onClick={handleRowClick}
       sx={{
+        cursor: isEditingRow ? 'default' : 'pointer',
         transition: 'background-color 180ms ease, transform 120ms ease',
       }}
     >
@@ -321,14 +424,10 @@ const AchievementRow = ({
       <TableCell>{renderStatusCell()}</TableCell>
       <TableCell>{renderDateCell()}</TableCell>
       <TableCell>{renderEditableCell('impact', achievement.impact)}</TableCell>
-      <TableCell>
-        <TechStackChips techStack={achievement.techStack} />
-      </TableCell>
+      <TableCell>{renderTechStackCell()}</TableCell>
       <TableCell>{renderActionsCell()}</TableCell>
     </TableRow>
   );
 };
 
 export default AchievementRow;
-
-
