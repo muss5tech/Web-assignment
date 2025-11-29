@@ -4,13 +4,12 @@ import { Box, CircularProgress, Container } from '@mui/material';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'sonner';
-import ThemeToggle from '../components/ThemeToggle';
-import AchievementFilters from '../features/achievements/components/AchievementFilters';
-import AchievementsTable from '../features/achievements/components/AchievementsTable';
-import AchievementDialog from '../features/achievements/components/AchievementDialog';
+import UIButton from '../components/ui/UIButton';
 import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
 import { fetchAchievements } from '../features/achievements/achievements.thunks';
-import UIButton from '../components/ui/UIButton';
+import AchievementDialog from '../features/achievements/components/AchievementDialog';
+import AchievementFilters from '../features/achievements/components/AchievementFilters';
+import AchievementsTable from '../features/achievements/components/AchievementsTable';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const AchievementsPage = () => {
@@ -61,7 +60,6 @@ const AchievementsPage = () => {
             </h4>
           </Box>
           <Box display="flex" alignItems="center" gap={2}>
-            <ThemeToggle />
             <UIButton
               variant="primary"
               size="md"
