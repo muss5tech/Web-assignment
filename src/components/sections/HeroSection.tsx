@@ -7,7 +7,7 @@ import {
   LocationIcon,
   ArrowRightIcon,
 } from '../Icons';
-import Button from '../ui/Button';
+import UIButton from '../ui/UIButton';
 
 const HeroSection = () => {
   const socialIcons = {
@@ -107,10 +107,10 @@ const HeroSection = () => {
 
   const CTAButton = (
     <div className="opacity-0 animate-fade-in-up animation-delay-700">
-      <Button size="lg" onClick={handleContactClick} className="group">
+      <UIButton size="lg" onClick={handleContactClick} className="group">
         Let's Connect
         <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-      </Button>
+      </UIButton>
     </div>
   );
 
@@ -132,6 +132,6 @@ const HeroSection = () => {
       </div>
     </section>
   );
-}
+};
 
 export default HeroSection;

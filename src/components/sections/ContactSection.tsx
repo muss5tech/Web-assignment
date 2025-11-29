@@ -1,7 +1,7 @@
 import { profile } from '../../data/profile';
 import SectionTitle from '../ui/SectionTitle';
 import AnimatedSection from '../ui/AnimatedSection';
-import Button from '../ui/Button';
+import UIButton from '../ui/UIButton';
 import Card from '../ui/Card';
 import {
   GitHubIcon,
@@ -66,14 +66,14 @@ const ContactSection = () => {
           information about my experience, education, and skills.
         </p>
         <div className="flex items-center justify-center gap-4">
-          <Button variant="primary">
+          <UIButton variant="primary">
             <DownloadIcon className="w-4 h-4" />
             Download CV
-          </Button>
-          <Button variant="outline">
+          </UIButton>
+          <UIButton variant="outline">
             <ExternalLinkIcon className="w-4 h-4" />
             View Online
-          </Button>
+          </UIButton>
         </div>
         <p className="text-light-text-muted dark:text-foreground-muted text-xs mt-4">
           Last updated: November 2025
@@ -115,6 +115,6 @@ const ContactSection = () => {
       </div>
     </section>
   );
-}
+};
 
 export default ContactSection;

@@ -34,6 +34,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectAllAchievements } from '../achievements.selectors';
 import { deleteAchievement, updateAchievement } from '../achievements.thunks';
+import AchievementRow from './AchievementRow';
+
+type EditableValue =
+  | string
+  | AchievementCategory
+  | AchievementStatus
+  | TechStack[];
 
 interface EditingState {
   id: string;
@@ -175,14 +182,9 @@ const AchievementsTable = () => {
   const handleEditClick = (
     id: string,
     field: keyof Achievement,
-    value:
-      | string
-      | AchievementCategory
-      | AchievementStatus
-      | TechStack[]
-      | undefined
+    value: EditableValue | undefined
   ) => {
-    setEditing({ id, field, value: value || '' });
+    setEditing({ id, field, value: (value ?? '') as EditableValue });
   };
 
   const handleSaveEdit = async () => {
@@ -576,41 +578,18 @@ const AchievementsTable = () => {
 
           <TableBody>
             {paginatedAchievements.map((achievement) => (
-              <TableRow
+              <AchievementRow
                 key={achievement.id}
-                hover
-                sx={{
-                  transition:
-                    'background-color 180ms ease, transform 120ms ease',
-                }}
-              >
-                <TableCell>
-                  {renderEditableCell(achievement, 'title', achievement.title)}
-                </TableCell>
-                <TableCell>
-                  {renderEditableCell(
-                    achievement,
-                    'description',
-                    achievement.description
-                  )}
-                </TableCell>
-                <TableCell>{renderCategoryCell(achievement)}</TableCell>
-                <TableCell>{renderStatusCell(achievement)}</TableCell>
-                <TableCell>{renderDateCell(achievement)}</TableCell>
-                <TableCell>
-                  {renderEditableCell(
-                    achievement,
-                    'impact',
-                    achievement.impact
-                  )}
-                </TableCell>
-                <TableCell>
-                  <TechStackChips techStack={achievement.techStack} />
-                </TableCell>
-                <TableCell>
-                  <ActionsCell achievement={achievement} />
-                </TableCell>
-              </TableRow>
+                achievement={achievement}
+                editing={editing}
+                onStartEdit={handleEditClick}
+                onChangeEditingValue={(value) =>
+                  editing && setEditing({ ...editing, value })
+                }
+                onSaveEdit={handleSaveEdit}
+                onCancelEdit={handleCancelEdit}
+                onDelete={handleDelete}
+              />
             ))}
           </TableBody>
         </Table>

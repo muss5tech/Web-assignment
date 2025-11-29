@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Autocomplete,
+  Button as MuiButton,
   Chip,
   Dialog,
   DialogActions,
@@ -10,24 +11,23 @@ import {
   FormHelperText,
   Grid,
   MenuItem,
-  Button as MuiButton,
   TextField,
 } from '@mui/material';
 import dayjs from 'dayjs';
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import Button from '../../../components/ui/Button';
 import {
   AchievementCategory,
   AchievementStatus,
   TechStack,
 } from '../../../data/achievements';
+import UIButton from '../../../components/ui/UIButton';
 import { useAppDispatch } from '../../../store/hooks';
-import { createAchievement } from '../achievements.thunks';
 import {
   AchievementFormData,
   achievementSchema,
 } from '../schema/achievement.schema';
+import { createAchievement } from '../achievements.thunks';
 
 interface AchievementDialogProps {
   open: boolean;
@@ -293,9 +293,9 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           >
             Cancel
           </MuiButton>
-          <Button type="submit" variant="primary" disabled={isSubmitting}>
+          <UIButton type="submit" variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Creating...' : 'Create'}
-          </Button>
+          </UIButton>
         </DialogActions>
       </form>
     </Dialog>
