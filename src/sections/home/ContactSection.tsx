@@ -1,21 +1,13 @@
 import { AnimatedSection, Card, SectionTitle, UIButton } from '@/components/ui';
+import { AutoAwesome, Download, Email, GitHub, LinkedIn, OpenInNew, PhoneAndroid } from '@mui/icons-material';
 import { profile } from '../../data/profile';
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  EmailIcon,
-  PhoneIcon,
-  DownloadIcon,
-  ExternalLinkIcon,
-  SparklesIcon,
-} from '@/components';
 
 const ContactSection = () => {
   const socialIcons = {
-    github: GitHubIcon,
-    linkedin: LinkedInIcon,
-    email: EmailIcon,
-    phone: PhoneIcon,
+    github: GitHub,
+    linkedin: LinkedIn,
+    email: Email,
+    phone: PhoneAndroid,
   };
 
   const contactCards = (
@@ -54,7 +46,7 @@ const ContactSection = () => {
   const cvSection = (
     <AnimatedSection animation="fade-in-up">
       <Card variant="glass" className="text-center">
-        <SparklesIcon className="w-6 h-6 xs:w-8 xs:h-8 text-accent-primary mx-auto mb-3 xs:mb-4" />
+        <AutoAwesome className="w-6 h-6 xs:w-8 xs:h-8 text-accent-primary mx-auto mb-3 xs:mb-4" />
         <h3 className="font-display text-lg xs:text-xl font-bold text-light-text-primary dark:text-foreground-primary mb-1.5 xs:mb-2">
           View My Resume
         </h3>
@@ -64,11 +56,11 @@ const ContactSection = () => {
         </p>
         <div className="flex flex-col xs:flex-row items-center justify-center gap-2 xs:gap-3 sm:gap-4">
           <UIButton variant="primary" className="w-full xs:w-auto">
-            <DownloadIcon className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
+            <Download className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
             Download CV
           </UIButton>
           <UIButton variant="outline" className="w-full xs:w-auto">
-            <ExternalLinkIcon className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
+            <OpenInNew className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
             View Online
           </UIButton>
         </div>

@@ -1,13 +1,13 @@
-import { experiences, type ExperienceItem } from '../../data/experience';
-import { BriefcaseIcon, GraduationCapIcon } from '@/components';
 import { AnimatedSection, Badge, SectionTitle } from '@/components/ui';
+import { School, ShortText } from '@mui/icons-material';
+import { experiences, type ExperienceItem } from '../../data/experience';
 
 const TimelineLine = () => <div className="timeline-line" />;
 const TimelineDot = () => <div className="timeline-dot" />;
 
 const TimelineHeader = ({ experience }: { experience: ExperienceItem }) => {
   const isEducation = experience.id === 'uit';
-  const Icon = isEducation ? GraduationCapIcon : BriefcaseIcon;
+  const Icon = isEducation ? School : ShortText;
 
   return (
     <div className="flex flex-wrap items-start justify-between gap-3 xs:gap-4 mb-3 xs:mb-4">

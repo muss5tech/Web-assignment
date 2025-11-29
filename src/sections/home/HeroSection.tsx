@@ -1,20 +1,13 @@
 import { UIButton } from '@/components/ui';
+import { ArrowRightAlt, Email, GitHub, LinkedIn, LocationOn, PhoneAndroid } from '@mui/icons-material';
 import { profile } from '../../data/profile';
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  EmailIcon,
-  PhoneIcon,
-  LocationIcon,
-  ArrowRightIcon,
-} from '@/components';
 
 const HeroSection = () => {
   const socialIcons = {
-    github: GitHubIcon,
-    linkedin: LinkedInIcon,
-    email: EmailIcon,
-    phone: PhoneIcon,
+    github: GitHub,
+    linkedin: LinkedIn,
+    email: Email,
+    phone: PhoneAndroid,
   };
 
   const handleContactClick = () => {
@@ -67,7 +60,7 @@ const HeroSection = () => {
   const Location = (
     <div className="opacity-0 animate-fade-in-up animation-delay-400">
       <p className="flex items-center justify-center gap-2 text-light-text-muted dark:text-foreground-muted mb-4 xs:mb-6 text-sm xs:text-base">
-        <LocationIcon className="w-4 h-4" />
+        <LocationOn className="w-4 h-4" />
         {profile.location}
       </p>
     </div>
@@ -109,7 +102,7 @@ const HeroSection = () => {
     <div className="opacity-0 animate-fade-in-up animation-delay-700">
       <UIButton size="lg" onClick={handleContactClick} className="group">
         Let's Connect
-        <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        <ArrowRightAlt className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
       </UIButton>
     </div>
   );

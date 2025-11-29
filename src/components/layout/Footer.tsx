@@ -1,13 +1,13 @@
-import { GitHubIcon, LinkedInIcon, EmailIcon } from '../Icons';
+import { Email, GitHub, LinkedIn } from '@mui/icons-material';
 import { profile } from '../../data/profile';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialIcons = {
-    github: GitHubIcon,
-    linkedin: LinkedInIcon,
-    email: EmailIcon,
+    github: GitHub,
+    linkedin: LinkedIn,
+    email: Email,
   };
 
   const Copyright = () => (

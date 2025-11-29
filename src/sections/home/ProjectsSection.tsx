@@ -1,5 +1,5 @@
-import { CodeIcon, ExternalLinkIcon, GitHubIcon } from '@/components';
 import { AnimatedSection, Badge, Card, SectionTitle } from '@/components/ui';
+import { Code, GitHub, OpenInNew } from '@mui/icons-material';
 import { projects, type Project } from '../../data/projects';
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
@@ -7,7 +7,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
   const ProjectIcon = (
     <div className="mb-3 xs:mb-4 p-3 xs:p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-light-border-secondary dark:border-border-secondary">
-      <CodeIcon className="w-6 h-6 xs:w-8 xs:h-8 text-accent-primary" />
+      <Code className="w-6 h-6 xs:w-8 xs:h-8 text-accent-primary" />
     </div>
   );
 
@@ -42,7 +42,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           rel="noopener noreferrer"
           className="flex items-center gap-1 xs:gap-1.5 text-xs xs:text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
         >
-          <ExternalLinkIcon className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
+          <OpenInNew className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
           Live Demo
         </a>
       )}
@@ -53,7 +53,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           rel="noopener noreferrer"
           className="flex items-center gap-1 xs:gap-1.5 text-xs xs:text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
         >
-          <GitHubIcon className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
+          <GitHub className="w-3.5 h-3.5 xs:w-4 xs:h-4" />
           Source Code
         </a>
       )}

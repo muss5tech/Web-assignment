@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Close, Menu } from '@mui/icons-material';
 import clsx from 'clsx';
-import { MenuIcon, CloseIcon } from '../Icons';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 
 const navItems = [
@@ -82,9 +82,9 @@ function Header() {
       aria-label="Toggle menu"
     >
       {isMobileMenuOpen ? (
-        <CloseIcon className="w-5 h-5 xs:w-6 xs:h-6" />
+        <Close className="w-5 h-5 xs:w-6 xs:h-6" />
       ) : (
-        <MenuIcon className="w-5 h-5 xs:w-6 xs:h-6" />
+        <Menu className="w-5 h-5 xs:w-6 xs:h-6" />
       )}
     </button>
   );
