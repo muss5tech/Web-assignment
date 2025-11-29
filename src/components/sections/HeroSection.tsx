@@ -94,7 +94,7 @@ function HeroSection() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-light-bg-card dark:bg-background-card border border-gray-200 dark:border-white/5 hover:border-accent-primary/50 transition-all duration-300 hover:shadow-glow-sm"
+                    className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-light-bg-card dark:bg-background-card border border-light-border-secondary dark:border-border-secondary hover:border-accent-primary/50 transition-all duration-300 hover:shadow-glow-sm"
                   >
                     <Icon className="w-5 h-5 text-light-text-secondary dark:text-foreground-secondary group-hover:text-accent-primary transition-colors" />
                     <span className="text-sm text-light-text-secondary dark:text-foreground-secondary group-hover:text-light-text-primary dark:group-hover:text-foreground-primary transition-colors">

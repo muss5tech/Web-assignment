@@ -11,7 +11,7 @@ function Footer() {
   };
 
   return (
-    <footer className="border-t border-gray-200 dark:border-white/5 bg-light-bg-secondary/50 dark:bg-background-secondary/50">
+    <footer className="border-t border-light-border-secondary dark:border-border-secondary bg-light-bg-secondary/50 dark:bg-background-secondary/50">
       <div className="section-container py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}

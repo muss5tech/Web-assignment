@@ -10,7 +10,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <AnimatedSection animation="fade-in-up" className="h-full">
       <Card className="h-full flex flex-col group">
         {/* Project Icon/Preview */}
-        <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-gray-200 dark:border-white/5">
+        <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-light-border-secondary dark:border-border-secondary">
           <CodeIcon className="w-8 h-8 text-accent-primary" />
         </div>
 
@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         {/* Links */}
-        <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-white/5">
+        <div className="flex items-center gap-3 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
           {project.liveUrl && (
             <a
               href={project.liveUrl}

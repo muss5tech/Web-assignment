@@ -26,7 +26,7 @@ function TimelineItem({
       <div className="timeline-dot" />
 
       {/* Content */}
-      <div className="bg-light-bg-card dark:bg-background-card rounded-xl border border-gray-200 dark:border-white/5 p-6 hover:border-accent-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-card shadow-sm dark:shadow-none">
+      <div className="bg-light-bg-card dark:bg-background-card rounded-xl border border-light-border-secondary dark:border-border-secondary p-6 hover:border-accent-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-card shadow-sm dark:shadow-none">
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-3">
@@ -71,7 +71,7 @@ function TimelineItem({
 
         {/* Tech Stack */}
         {experience.techStack.length > 0 && (
-          <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200 dark:border-white/5">
+          <div className="flex flex-wrap gap-2 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
             {experience.techStack.map((tech) => (
               <Badge key={tech} size="sm" variant="outline">
                 {tech}

@@ -110,7 +110,7 @@ function Header() {
             isMobileMenuOpen ? 'max-h-81 mt-4' : 'max-h-0'
           )}
         >
-          <div className="flex flex-col gap-4 pt-4 border-t border-gray-200 dark:border-white/10">
+          <div className="flex flex-col gap-4 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.label}>
@@ -133,7 +133,7 @@ function Header() {
                 </li>
               ))}
             </ul>
-            <div className="pt-2 border-t border-gray-200 dark:border-white/10">
+            <div className="pt-2 border-t border-light-border-secondary dark:border-border-secondary">
               <ThemeToggle />
             </div>
           </div>

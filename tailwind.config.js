@@ -5,45 +5,62 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light mode background colors
         light: {
           bg: {
             primary: '#ffffff',
             secondary: '#f8fafc',
+            tertiary: '#f1f5f9',
             card: '#ffffff',
             hover: '#f1f5f9',
           },
           text: {
             primary: '#0f172a',
             secondary: '#475569',
-            muted: '#64748b',
+            tertiary: '#64748b',
+            muted: '#94a3b8',
+          },
+          border: {
+            primary: '#cbd5e1',
+            secondary: '#e2e8f0',
+            hover: '#94a3b8',
           },
         },
-        // Dark mode background colors
+
         background: {
           primary: '#0a0a0f',
           secondary: '#12121a',
+          tertiary: '#1a1a24',
           card: '#1a1a24',
           hover: '#242432',
         },
-        // Text colors
         foreground: {
           primary: '#ffffff',
-          secondary: '#a1a1aa',
-          muted: '#71717a',
+          secondary: '#e2e8f0',
+          tertiary: '#cbd5e1',
+          muted: '#94a3b8',
         },
-        // Accent colors
+        border: {
+          primary: '#334155',
+          secondary: '#1e293b',
+          hover: '#475569',
+        },
+
         accent: {
           primary: '#6366f1',
           secondary: '#8b5cf6',
+          tertiary: '#06b6d4',
           hover: '#818cf8',
         },
-        // Status colors
+
         status: {
+          success: '#22c55e',
+          warning: '#f59e0b',
+          error: '#ef4444',
+          info: '#3b82f6',
           online: '#22c55e',
           offline: '#ef4444',
         },
-        // Tech category colors
+
         tech: {
           frontend: '#3b82f6',
           mobile: '#10b981',
