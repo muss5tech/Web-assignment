@@ -5,7 +5,7 @@ import Badge from '../ui/Badge';
 import Card from '../ui/Card';
 import { ExternalLinkIcon, GitHubIcon, CodeIcon } from '../Icons';
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
   const delayClass = `animation-delay-${(index + 1) * 100}`;
 
   const ProjectIcon = (

@@ -17,7 +17,7 @@ function SectionTitle({
 }: SectionTitleProps) {
   const alignments = {
     left: 'text-left',
-    center: 'text-center mx-auto',
+    center: 'flex flex-col items-center text-center mx-auto',
     right: 'text-right',
   };
 
