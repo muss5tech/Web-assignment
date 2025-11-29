@@ -42,7 +42,7 @@ const AchievementFilters = () => {
           borderRadius: 3,
           border: '1px solid rgba(148,163,184,0.35)',
           background:
-            'linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,64,175,0.45))',
+            'linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,64,175,0.35))',
           boxShadow:
             '0 18px 45px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
           // Override global Tailwind :focus-visible ring to avoid double focus border

@@ -82,7 +82,7 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           borderRadius: 4,
           border: '1px solid rgba(148,163,184,0.4)',
           background:
-            'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%), rgba(15,23,42,0.98)',
+            'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 0%), rgba(15,23,42,0.98)',
           boxShadow:
             '0 24px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
         },

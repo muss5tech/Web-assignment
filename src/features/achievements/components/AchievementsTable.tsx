@@ -474,7 +474,7 @@ const AchievementsTable = () => {
           sx={{
             '& thead tr': {
               background:
-                'linear-gradient(90deg, rgba(15,23,42,0.95), rgba(30,64,175,0.55))',
+                'linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,64,175,0.35))',
             },
             '& thead th': {
               color: 'rgb(219,234,254)',
