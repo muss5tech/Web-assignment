@@ -50,7 +50,7 @@ function TechCategoryCard({
   );
 }
 
-function TechStackSection() {
+const TechStackSection =() => {
   return (
     <section id="tech-stack" className="py-20">
       <div className="section-container">

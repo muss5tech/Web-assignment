@@ -6,71 +6,92 @@ import Card from '../ui/Card';
 import { ExternalLinkIcon, GitHubIcon, CodeIcon } from '../Icons';
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const delayClass = `animation-delay-${(index + 1) * 100}`;
+
+  const ProjectIcon = (
+    <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-light-border-secondary dark:border-border-secondary">
+      <CodeIcon className="w-8 h-8 text-accent-primary" />
+    </div>
+  );
+
+  const ProjectTitle = (
+    <h3 className="font-display text-xl font-bold text-light-text-primary dark:text-foreground-primary mb-3 group-hover:text-accent-primary transition-colors">
+      {project.title}
+    </h3>
+  );
+
+  const ProjectDescription = (
+    <p className="text-light-text-secondary dark:text-foreground-secondary text-sm leading-relaxed mb-4 flex-grow">
+      {project.description}
+    </p>
+  );
+
+  const ProjectTechStack = project.techStack.length > 0 && (
+    <div className="flex flex-wrap gap-2 mb-4">
+      {project.techStack.map((tech) => (
+        <Badge key={tech} size="sm" variant="primary">
+          {tech}
+        </Badge>
+      ))}
+    </div>
+  );
+
+  const ProjectLinks = (
+    <div className="flex items-center gap-3 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
+        >
+          <ExternalLinkIcon className="w-4 h-4" />
+          Live Demo
+        </a>
+      )}
+      {project.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
+        >
+          <GitHubIcon className="w-4 h-4" />
+          Source Code
+        </a>
+      )}
+      {!project.liveUrl && !project.repoUrl && (
+        <span className="text-sm text-light-text-muted dark:text-foreground-muted italic">
+          Private project
+        </span>
+      )}
+    </div>
+  );
+
   return (
-    <AnimatedSection animation="fade-in-up" className="h-full">
+    <AnimatedSection animation="fade-in-up" className={`h-full ${delayClass}`}>
       <Card className="h-full flex flex-col group">
-        {/* Project Icon/Preview */}
-        <div className="mb-4 p-4 rounded-lg bg-gradient-to-br from-accent-primary/10 to-accent-secondary/10 border border-light-border-secondary dark:border-border-secondary">
-          <CodeIcon className="w-8 h-8 text-accent-primary" />
-        </div>
-
-        {/* Title */}
-        <h3 className="font-display text-xl font-bold text-light-text-primary dark:text-foreground-primary mb-3 group-hover:text-accent-primary transition-colors">
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-light-text-secondary dark:text-foreground-secondary text-sm leading-relaxed mb-4 flex-grow">
-          {project.description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.techStack.map((tech) => (
-            <Badge key={tech} size="sm" variant="primary">
-              {tech}
-            </Badge>
-          ))}
-        </div>
-
-        {/* Links */}
-        <div className="flex items-center gap-3 pt-4 border-t border-light-border-secondary dark:border-border-secondary">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
-            >
-              <ExternalLinkIcon className="w-4 h-4" />
-              Live Demo
-            </a>
-          )}
-          {project.repoUrl && (
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-sm text-light-text-secondary dark:text-foreground-secondary hover:text-accent-primary transition-colors"
-            >
-              <GitHubIcon className="w-4 h-4" />
-              Source Code
-            </a>
-          )}
-          {!project.liveUrl && !project.repoUrl && (
-            <span className="text-sm text-light-text-muted dark:text-foreground-muted italic">
-              Private project
-            </span>
-          )}
-        </div>
+        {ProjectIcon}
+        {ProjectTitle}
+        {ProjectDescription}
+        {ProjectTechStack}
+        {ProjectLinks}
       </Card>
     </AnimatedSection>
   );
 }
 
-function ProjectsSection() {
+const ProjectsSection = () => {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
+
+  const OtherProjectsTitle = otherProjects.length > 0 && (
+    <AnimatedSection animation="fade-in-up" className="mb-6">
+      <h3 className="font-display text-xl font-semibold text-light-text-secondary dark:text-foreground-secondary">
+        Other Projects
+      </h3>
+    </AnimatedSection>
+  );
 
   return (
     <section id="projects" className="py-20">
@@ -90,11 +111,7 @@ function ProjectsSection() {
         {/* Other Projects */}
         {otherProjects.length > 0 && (
           <>
-            <AnimatedSection animation="fade-in-up" className="mb-6">
-              <h3 className="font-display text-xl font-semibold text-light-text-secondary dark:text-foreground-secondary">
-                Other Projects
-              </h3>
-            </AnimatedSection>
+            {OtherProjectsTitle}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {otherProjects.map((project, index) => (
                 <ProjectCard

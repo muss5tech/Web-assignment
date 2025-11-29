@@ -9,7 +9,7 @@ import {
 } from '../Icons';
 import Button from '../ui/Button';
 
-function HeroSection() {
+const HeroSection = () => {
   const socialIcons = {
     github: GitHubIcon,
     linkedin: LinkedInIcon,
