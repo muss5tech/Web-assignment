@@ -1,50 +1,68 @@
-import { useEffect } from 'react';
-import { Container, Box, Typography, CircularProgress } from '@mui/material';
-import { Toaster } from 'sonner';
+import { cn } from '@/utils/helpers';
+import { Box, CircularProgress, Container } from '@mui/material';
 import { NuqsAdapter } from 'nuqs/adapters/react';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { fetchAchievements } from '../features/achievements/achievements.thunks';
-import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
-import AchievementsTable from '../features/achievements/components/AchievementsTable';
-import AchievementFilters from '../features/achievements/components/AchievementFilters';
+import { useEffect } from 'react';
+import { Toaster } from 'sonner';
 import ThemeToggle from '../components/ThemeToggle';
+import { selectAchievementsLoading } from '../features/achievements/achievements.selectors';
+import { fetchAchievements } from '../features/achievements/achievements.thunks';
+import AchievementFilters from '../features/achievements/components/AchievementFilters';
+import AchievementsTable from '../features/achievements/components/AchievementsTable';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 const AchievementsPage = () => {
-    const dispatch = useAppDispatch();
-    const loading = useAppSelector(selectAchievementsLoading);
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(selectAchievementsLoading);
 
-    useEffect(() => {
-        dispatch(fetchAchievements());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAchievements());
+  }, [dispatch]);
 
-    if (loading) {
-        return (
-            <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
-                <CircularProgress />
-            </Box>
-        );
-    }
-
+  if (loading) {
     return (
-        <NuqsAdapter>
-            <Container maxWidth="xl" sx={{ py: 4 }}>
-                <Toaster position="top-right" richColors />
-                <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-                    <Box>
-                        <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
-                            Achievements Management
-                        </Typography>
-                        <Typography variant="body1" color="text.secondary">
-                            Manage and track your professional achievements
-                        </Typography>
-                    </Box>
-                    <ThemeToggle />
-                </Box>
-                <AchievementFilters />
-                <AchievementsTable />
-            </Container>
-        </NuqsAdapter>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
+        <CircularProgress />
+      </Box>
     );
+  }
+
+  return (
+    <NuqsAdapter>
+      <Container
+        maxWidth="xl"
+        sx={{
+          pt: { xs: 10, md: 12 },
+          pb: 6,
+        }}
+      >
+        <Toaster position="top-right" richColors />
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={3}
+        >
+          <Box>
+            <h4
+              className={cn(
+                'text-center text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-bold mb-6'
+              )}
+            >
+              <span className="gradient-text"> My Achievements</span>
+            </h4>
+          </Box>
+          <ThemeToggle />
+        </Box>
+        <AchievementFilters />
+        <AchievementsTable />
+      </Container>
+    </NuqsAdapter>
+  );
 };
 
 export default AchievementsPage;

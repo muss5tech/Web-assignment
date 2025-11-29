@@ -1,17 +1,22 @@
-import { useInView } from '../hooks'
-import { cn } from '../utils/helpers'
-import { personalInfo } from '../data/portfolio'
-import { MapPinIcon, DownloadIcon, ExternalLinkIcon, SparklesIcon } from './Icons'
+import { useInView } from '../hooks';
+import { cn } from '../utils/helpers';
+import { personalInfo } from '../data/portfolio';
+import {
+  MapPinIcon,
+  DownloadIcon,
+  ExternalLinkIcon,
+  SparklesIcon,
+} from './Icons';
 
 const highlights = [
   { label: 'Years Experience', value: '2+' },
   { label: 'Projects Completed', value: '10+' },
   { label: 'Technologies', value: '25+' },
   { label: 'Apps Published', value: '3+' },
-]
+];
 
 export function About() {
-  const [ref, isInView] = useInView({ threshold: 0.1 })
+  const [ref, isInView] = useInView({ threshold: 0.1 });
 
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden">
@@ -19,7 +24,10 @@ export function About() {
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent-primary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={ref} className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div
+          ref={ref}
+          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        >
           {/* Left Column - Image/Avatar */}
           <div
             className={cn(
@@ -36,7 +44,9 @@ export function About() {
                   {/* Avatar placeholder with initials */}
                   <div className="relative z-10 flex flex-col items-center justify-center">
                     <div className="w-32 h-32 rounded-full bg-gradient-to-br from-accent-primary to-accent-secondary flex items-center justify-center mb-6">
-                      <span className="text-5xl font-display font-bold text-white">LN</span>
+                      <span className="text-5xl font-display font-bold text-white">
+                        LN
+                      </span>
                     </div>
                     <h3 className="text-2xl font-display font-bold text-text-primary mb-2">
                       {personalInfo.fullName}
@@ -60,13 +70,19 @@ export function About() {
 
               {/* Floating badges */}
               <div className="absolute -top-4 -right-4 glass-card px-4 py-2 rounded-xl animate-float">
-                <span className="text-sm font-medium text-accent-primary">React.js</span>
+                <span className="text-sm font-medium text-accent-primary">
+                  React.js
+                </span>
               </div>
               <div className="absolute -bottom-4 -left-4 glass-card px-4 py-2 rounded-xl animate-float animation-delay-300">
-                <span className="text-sm font-medium text-accent-secondary">TypeScript</span>
+                <span className="text-sm font-medium text-accent-secondary">
+                  TypeScript
+                </span>
               </div>
               <div className="absolute top-1/2 -right-8 glass-card px-4 py-2 rounded-xl animate-float animation-delay-500">
-                <span className="text-sm font-medium text-accent-tertiary">Flutter</span>
+                <span className="text-sm font-medium text-accent-tertiary">
+                  Flutter
+                </span>
               </div>
             </div>
           </div>
@@ -81,7 +97,9 @@ export function About() {
             {/* Section Label */}
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-px bg-gradient-to-r from-accent-primary to-transparent" />
-              <span className="text-accent-primary font-mono text-sm">About Me</span>
+              <span className="text-accent-primary font-mono text-sm">
+                About Me
+              </span>
             </div>
 
             {/* Title */}
@@ -95,7 +113,10 @@ export function About() {
             <div className="space-y-4 text-text-secondary leading-relaxed mb-8">
               <p>{personalInfo.bio.split('\n\n')[0]}</p>
               <p className="flex items-start gap-2">
-                <SparklesIcon size={20} className="text-accent-primary mt-1 flex-shrink-0" />
+                <SparklesIcon
+                  size={20}
+                  className="text-accent-primary mt-1 flex-shrink-0"
+                />
                 <span>{personalInfo.bio.split('\n\n')[1]}</span>
               </p>
             </div>
@@ -108,7 +129,7 @@ export function About() {
                   className={cn(
                     'glass-card p-4 text-center',
                     'opacity-0',
-                    isInView && 'animate-scale-in',
+                    isInView && 'animate-scale-in'
                   )}
                   style={{ animationDelay: `${400 + index * 100}ms` }}
                 >
@@ -145,5 +166,5 @@ export function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }
