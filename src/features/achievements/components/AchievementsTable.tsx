@@ -17,30 +17,21 @@ import {
 } from 'nuqs';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
-import {
-  Achievement,
-  AchievementCategory,
-  AchievementStatus,
-  TechStack,
-} from '../../../data/achievements';
+import { Achievement } from '../../../data/achievements';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectAllAchievements } from '../achievements.selectors';
 import { deleteAchievement, updateAchievement } from '../achievements.thunks';
+import {
+  DEFAULT_ROWS_PER_PAGE,
+  DESCRIPTION_MIN_LENGTH,
+  IMPACT_MIN_LENGTH,
+  ROWS_PER_PAGE_OPTIONS,
+  TITLE_MIN_LENGTH
+} from '../constants';
+import { tableStyles, typographyStyles } from '../styles/achievementStyles';
+import { EditableValue, EditingState } from '../types';
 import AchievementDetailDialog from './AchievementDetailDialog';
 import AchievementRow from './AchievementRow';
-import { tableStyles, typographyStyles } from '../styles/achievementStyles';
-
-type EditableValue =
-  | string
-  | AchievementCategory
-  | AchievementStatus
-  | TechStack[];
-
-interface EditingState {
-  id: string;
-  field: keyof Achievement;
-  value: string | AchievementCategory | AchievementStatus | TechStack[];
-}
 
 const AchievementsTable = () => {
   const dispatch = useAppDispatch();
@@ -49,7 +40,7 @@ const AchievementsTable = () => {
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(0));
   const [rowsPerPage, setRowsPerPage] = useQueryState(
     'rowsPerPage',
-    parseAsInteger.withDefault(10)
+    parseAsInteger.withDefault(DEFAULT_ROWS_PER_PAGE)
   );
   const [search] = useQueryState('search', parseAsString.withDefault(''));
   const [category] = useQueryState('category', parseAsString.withDefault(''));
@@ -120,27 +111,27 @@ const AchievementsTable = () => {
     if (
       editing.field === 'title' &&
       typeof editing.value === 'string' &&
-      editing.value.length < 3
+      editing.value.trim().length < TITLE_MIN_LENGTH
     ) {
-      toast.error('Title must be at least 3 characters');
+      toast.error(`Title must be at least ${TITLE_MIN_LENGTH} characters`);
       return;
     }
 
     if (
       editing.field === 'description' &&
       typeof editing.value === 'string' &&
-      editing.value.length < 10
+      editing.value.trim().length < DESCRIPTION_MIN_LENGTH
     ) {
-      toast.error('Description must be at least 10 characters');
+      toast.error(`Description must be at least ${DESCRIPTION_MIN_LENGTH} characters`);
       return;
     }
 
     if (
       editing.field === 'impact' &&
       typeof editing.value === 'string' &&
-      editing.value.length < 10
+      editing.value.trim().length < IMPACT_MIN_LENGTH
     ) {
-      toast.error('Impact must be at least 10 characters');
+      toast.error(`Impact must be at least ${IMPACT_MIN_LENGTH} characters`);
       return;
     }
 
@@ -250,7 +241,7 @@ const AchievementsTable = () => {
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[...ROWS_PER_PAGE_OPTIONS]}
           sx={tableStyles.pagination}
         />
       </Box>

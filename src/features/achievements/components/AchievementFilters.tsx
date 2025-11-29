@@ -16,6 +16,7 @@ import {
   AchievementCategory,
   AchievementStatus,
 } from '../../../data/achievements';
+import { SEARCH_PLACEHOLDER } from '../constants';
 import { paperStyles } from '../styles/achievementStyles';
 
 const fieldSx: SxProps<Theme> = {
@@ -106,7 +107,7 @@ const AchievementFilters = () => {
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
               onKeyUp={handleSearchKeyPress}
-              placeholder="Search achievements..."
+              placeholder={SEARCH_PLACEHOLDER}
               sx={fieldSx}
             />
           </Grid>

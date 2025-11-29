@@ -19,48 +19,17 @@ import {
   AchievementStatus,
   TechStack,
 } from '../../../data/achievements';
+import { MAX_VISIBLE_TECH_STACK } from '../constants/achievement.constants';
+import {
+  AchievementRowComponentProps
+} from '../types/achievement.types';
+import {
+  getCategoryColor,
+  getStatusColor,
+  splitVisibleItems,
+} from '../utils/achievement.utils';
 
-type EditableValue =
-  | string
-  | AchievementCategory
-  | AchievementStatus
-  | TechStack[];
-
-interface AchievementRowProps {
-  achievement: Achievement;
-  editing: {
-    id: string;
-    field: keyof Achievement;
-    value: EditableValue;
-  } | null;
-  onRowClick: (achievement: Achievement) => void;
-  onStartEdit: (
-    id: string,
-    field: keyof Achievement,
-    value: EditableValue | undefined
-  ) => void;
-  onChangeEditingValue: (value: EditableValue) => void;
-  onSaveEdit: () => void;
-  onCancelEdit: () => void;
-  onDelete: (id: string, title: string) => void;
-}
-
-const categoryColorMap: Record<
-  AchievementCategory,
-  'primary' | 'secondary' | 'success' | 'warning' | 'info'
-> = {
-  [AchievementCategory.Technical]: 'primary',
-  [AchievementCategory.Project]: 'secondary',
-  [AchievementCategory.Leadership]: 'warning',
-  [AchievementCategory.Education]: 'info',
-  [AchievementCategory.Community]: 'success',
-};
-
-const getCategoryColor = (category: AchievementCategory) =>
-  categoryColorMap[category] ?? 'default';
-
-const getStatusColor = (status: AchievementStatus) =>
-  status === AchievementStatus.Completed ? 'success' : 'warning';
+interface AchievementRowProps extends AchievementRowComponentProps {}
 
 const CategoryChip = ({ category }: { category: AchievementCategory }) => (
   <Chip
@@ -80,8 +49,7 @@ const StatusChip = ({ status }: { status: AchievementStatus }) => (
 
 const TechStackChips = ({ techStack }: { techStack?: TechStack[] }) => {
   if (!techStack?.length) return null;
-  const visible = techStack.slice(0, 3);
-  const remaining = techStack.length - visible.length;
+  const { visible, remaining } = splitVisibleItems(techStack, MAX_VISIBLE_TECH_STACK);
 
   return (
     <Box display="flex" flexWrap="wrap" gap={0.5}>
@@ -128,7 +96,7 @@ const AchievementRow = ({
 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDelete(achievement.id, achievement.title);
+    onDelete?.(achievement.id, achievement.title);
   };
 
   const handleSaveClick = (e: React.MouseEvent) => {

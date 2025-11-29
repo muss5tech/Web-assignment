@@ -34,6 +34,7 @@ import {
 import { updateAchievement } from '../achievements.thunks';
 import { dialogStyles } from '../styles/achievementStyles';
 import UIButton from '@/components/ui/UIButton';
+import { CATEGORY_COLOR_MAP, STATUS_COLOR_MAP } from '../constants/achievement.constants';
 
 interface AchievementDetailDialogProps {
   open: boolean;
@@ -112,23 +113,6 @@ const AchievementDetailDialog = ({
   };
 
   if (!achievement) return null;
-
-  const categoryColors: Record<
-    AchievementCategory,
-    'primary' | 'secondary' | 'success' | 'warning' | 'info'
-  > = {
-    [AchievementCategory.Technical]: 'primary',
-    [AchievementCategory.Project]: 'secondary',
-    [AchievementCategory.Leadership]: 'warning',
-    [AchievementCategory.Education]: 'info',
-    [AchievementCategory.Community]: 'success',
-  };
-
-  const statusColors: Record<AchievementStatus, 'success' | 'warning' | 'info'> = {
-    [AchievementStatus.Completed]: 'success',
-    [AchievementStatus.InProgress]: 'warning',
-    [AchievementStatus.Planned]: 'info',
-  };
 
   return (
     <Dialog
@@ -226,7 +210,7 @@ const AchievementDetailDialog = ({
                 <Box mt={1}>
                   <Chip
                     label={achievement.category}
-                    color={categoryColors[achievement.category]}
+                    color={CATEGORY_COLOR_MAP[achievement.category]}
                     size="small"
                   />
                 </Box>
@@ -250,7 +234,7 @@ const AchievementDetailDialog = ({
                 <Box mt={1}>
                   <Chip
                     label={achievement.status}
-                    color={statusColors[achievement.status]}
+                    color={STATUS_COLOR_MAP[achievement.status]}
                     size="small"
                   />
                 </Box>
