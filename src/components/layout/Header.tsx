@@ -5,11 +5,12 @@ import { MenuIcon, CloseIcon } from '../Icons';
 import ThemeToggle from '../ThemeToggle';
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '#home', type: 'hash' as const },
+  { label: 'Tech Stack', href: '#tech-stack', type: 'hash' as const },
+  { label: 'Experience', href: '#experience', type: 'hash' as const },
+  { label: 'Projects', href: '#projects', type: 'hash' as const },
+  { label: 'Contact', href: '#contact', type: 'hash' as const },
+  { label: 'Achievements', href: '/achievements', type: 'route' as const },
 ];
 
 function Header() {
@@ -66,13 +67,22 @@ function Header() {
             <ul className="flex items-center gap-8">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
-                  >
-                    {item.label}
-                  </a>
+                  {item.type === 'route' ? (
+                    <Link
+                      to={item.href}
+                      className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-sm font-medium py-1"
+                    >
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -104,13 +114,22 @@ function Header() {
             <ul className="flex flex-col gap-4">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
-                  >
-                    {item.label}
-                  </a>
+                  {item.type === 'route' ? (
+                    <Link
+                      to={item.href}
+                      className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="block text-foreground-secondary hover:text-foreground-primary transition-colors duration-200 text-base font-medium py-2"
+                    >
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
