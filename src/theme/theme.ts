@@ -161,6 +161,65 @@ const getDesignTokens = (mode: 'light' | 'dark'): ThemeOptions => ({
                 },
             },
         },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: mode === 'light' ? colors.light.border.primary : 'rgba(148,163,184,0.3)',
+                            transition: 'border-color 0.2s ease',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: mode === 'light' ? colors.light.border.hover : 'rgba(148,163,184,0.5)',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: colors.accent.primary,
+                            borderWidth: '2px',
+                        },
+                    },
+                    '& .MuiInputLabel-root': {
+                        color: mode === 'light' ? colors.light.text.secondary : colors.dark.text.secondary,
+                        '&.Mui-focused': {
+                            color: colors.accent.primary,
+                        },
+                    },
+                    '& .MuiInputBase-input': {
+                        color: mode === 'light' ? colors.light.text.primary : colors.dark.text.primary,
+                    },
+                    '& .MuiFormHelperText-root': {
+                        color: mode === 'light' ? colors.light.text.tertiary : colors.dark.text.tertiary,
+                    },
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: mode === 'light' ? colors.light.text.primary : colors.dark.text.primary,
+                    '&:hover': {
+                        backgroundColor: mode === 'light' ? colors.light.bg.hover : colors.dark.bg.hover,
+                    },
+                    '&.Mui-selected': {
+                        backgroundColor: mode === 'light' ? 'rgba(99,102,241,0.1)' : 'rgba(99,102,241,0.15)',
+                        '&:hover': {
+                            backgroundColor: mode === 'light' ? 'rgba(99,102,241,0.15)' : 'rgba(99,102,241,0.2)',
+                        },
+                    },
+                },
+            },
+        },
+        MuiAutocomplete: {
+            styleOverrides: {
+                paper: {
+                    backgroundColor: mode === 'light' ? colors.light.bg.card : colors.dark.bg.card,
+                    borderColor: mode === 'light' ? colors.light.border.secondary : colors.dark.border.secondary,
+                    border: '1px solid',
+                    boxShadow: mode === 'light'
+                        ? '0 4px 12px rgba(148,163,184,0.15)'
+                        : '0 8px 24px rgba(15,23,42,0.6)',
+                },
+            },
+        },
     },
 });
 

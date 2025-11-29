@@ -77,15 +77,20 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: 4,
-          border: '1px solid rgba(148,163,184,0.4)',
-          background:
-            'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%), rgba(15,23,42,0.98)',
-          boxShadow:
-            '0 24px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
-        },
+      sx={{
+        borderRadius: 4,
+        border: (theme) =>
+          theme.palette.mode === 'light'
+            ? '1px solid rgba(203,213,225,0.8)'
+            : '1px solid rgba(148,163,184,0.4)',
+        background: (theme) =>
+          theme.palette.mode === 'light'
+            ? 'linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))'
+            : 'radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 55%), rgba(15,23,42,0.98)',
+        boxShadow: (theme) =>
+          theme.palette.mode === 'light'
+            ? '0 8px 32px rgba(148,163,184,0.2), 0 0 0 1px rgba(203,213,225,0.3)'
+            : '0 24px 60px rgba(15,23,42,0.95), 0 0 0 1px rgba(15,23,42,0.9)',
       }}
     >
       <DialogTitle
@@ -93,7 +98,10 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           fontWeight: 700,
           letterSpacing: 0.4,
           fontSize: 20,
-          color: 'rgb(226,232,240)',
+          color: (theme) =>
+            theme.palette.mode === 'light'
+              ? 'rgb(15,23,42)'
+              : 'rgb(226,232,240)',
           pb: 1,
         }}
       >
@@ -270,7 +278,18 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
           <MuiButton
             onClick={handleClose}
             disabled={isSubmitting}
-            sx={{ color: 'rgb(148,163,184)' }}
+            sx={{
+              color: (theme) =>
+                theme.palette.mode === 'light'
+                  ? 'rgb(71,85,105)'
+                  : 'rgb(148,163,184)',
+              '&:hover': {
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? 'rgba(241,245,249,0.8)'
+                    : 'rgba(30,41,59,0.8)',
+              },
+            }}
           >
             Cancel
           </MuiButton>

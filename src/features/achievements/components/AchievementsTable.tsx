@@ -72,8 +72,8 @@ const CategoryChip = ({
     sx={
       onClick
         ? {
-            cursor: 'pointer',
-          }
+          cursor: 'pointer',
+        }
         : {}
     }
   />
@@ -94,8 +94,8 @@ const StatusChip = ({
     sx={
       onClick
         ? {
-            cursor: 'pointer',
-          }
+          cursor: 'pointer',
+        }
         : {}
     }
   />
@@ -642,9 +642,9 @@ const AchievementsTable = () => {
                 ? 'rgb(71,85,105)'
                 : 'rgb(148,163,184)',
             '.MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows':
-              {
-                fontSize: 12,
-              },
+            {
+              fontSize: 12,
+            },
             '.MuiTablePagination-actions button': {
               color: (theme) =>
                 theme.palette.mode === 'light'
