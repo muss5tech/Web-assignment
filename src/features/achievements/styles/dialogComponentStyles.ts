@@ -8,14 +8,19 @@ export const dialogHeaderContainer = {
       'linear-gradient(90deg, rgba(248,250,252,0.98), rgba(241,245,249,0.95))',
       'linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9))'
     ),
-  borderBottom: (theme: Theme) =>
+  borderRadius: 2,
+  px: 3,
+  py: 2.5,
+} as const;
+
+export const dialogContainer = {
+  border: (theme: Theme) =>
     getThemedValue(
       theme,
       '1px solid rgba(203,213,225,0.8)',
       '1px solid rgba(148,163,184,0.4)'
     ),
-  px: 3,
-  py: 2.5,
+  borderRadius: 2,
 } as const;
 
 export const dialogHeaderIconBox = {
@@ -30,12 +35,6 @@ export const dialogHeaderIconBox = {
 } as const;
 
 export const dialogFooterContainer = {
-  borderTop: (theme: Theme) =>
-    getThemedValue(
-      theme,
-      '1px solid rgba(203,213,225,0.8)',
-      '1px solid rgba(30,64,175,0.4)'
-    ),
   background: (theme: Theme) =>
     getThemedValue(
       theme,

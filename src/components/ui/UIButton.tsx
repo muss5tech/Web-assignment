@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { type ButtonHTMLAttributes, forwardRef } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline' | 'destructive';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
@@ -33,6 +33,8 @@ const UIButton = forwardRef<HTMLButtonElement, ButtonProps>(
         'text-light-text-secondary dark:text-foreground-secondary hover:text-light-text-primary dark:hover:text-foreground-primary hover:bg-light-bg-hover dark:hover:bg-background-hover',
       outline:
         'border border-accent-primary/50 text-accent-primary hover:bg-accent-primary/10 hover:border-accent-primary',
+      destructive:
+        'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 hover:shadow-lg hover:shadow-red-500/50 active:scale-[0.98]',
     };
 
     const sizes = {

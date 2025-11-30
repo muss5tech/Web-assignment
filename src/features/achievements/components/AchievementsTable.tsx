@@ -32,6 +32,7 @@ import { tableStyles, typographyStyles } from '../styles/achievementStyles';
 import { EditableValue, EditingState } from '../types';
 import AchievementDetailDialog from './AchievementDetailDialog';
 import AchievementRow from './AchievementRow';
+import DeleteConfirmDialog from './DeleteConfirmDialog';
 
 const AchievementsTable = () => {
   const dispatch = useAppDispatch();
@@ -49,6 +50,8 @@ const AchievementsTable = () => {
   const [dateTo] = useQueryState('dateTo', parseAsIsoDateTime);
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
   const [editing, setEditing] = useState<EditingState | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<{ id: string; title: string } | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const filteredAchievements = useMemo(() => {
     return achievements.filter((a) => {
@@ -79,13 +82,27 @@ const AchievementsTable = () => {
     setPage(0);
   };
 
-  const handleDelete = async (id: string, title: string) => {
+  const handleDelete = (id: string, title: string) => {
+    setDeleteTarget({ id, title });
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteTarget) return;
+
+    setIsDeleting(true);
     try {
-      await dispatch(deleteAchievement(id)).unwrap();
-      toast.success(`Achievement "${title}" deleted successfully`);
+      await dispatch(deleteAchievement(deleteTarget.id)).unwrap();
+      toast.success(`Achievement "${deleteTarget.title}" deleted successfully`);
+      setDeleteTarget(null);
     } catch {
       toast.error('Failed to delete achievement');
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const cancelDelete = () => {
+    setDeleteTarget(null);
   };
 
   const handleRowClick = (achievement: Achievement) => {
@@ -250,6 +267,14 @@ const AchievementsTable = () => {
         open={!!selectedAchievement}
         achievement={selectedAchievement}
         onClose={handleCloseDialog}
+      />
+
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        title={deleteTarget?.title || ''}
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        isDeleting={isDeleting}
       />
     </Box>
   );
