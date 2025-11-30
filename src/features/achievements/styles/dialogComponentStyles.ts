@@ -5,8 +5,8 @@ export const dialogHeaderContainer = {
   background: (theme: Theme) =>
     getThemedValue(
       theme,
-      'linear-gradient(90deg, rgba(241,245,249,0.98), rgba(226,232,240,0.85))',
-      'linear-gradient(90deg, rgba(15,23,42,0.95), rgba(30,64,175,0.55))'
+      'linear-gradient(90deg, rgba(248,250,252,0.98), rgba(241,245,249,0.95))',
+      'linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9))'
     ),
   borderBottom: (theme: Theme) =>
     getThemedValue(

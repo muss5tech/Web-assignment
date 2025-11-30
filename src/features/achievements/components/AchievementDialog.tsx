@@ -28,7 +28,6 @@ import {
   AchievementFormData,
   achievementSchema,
 } from '../schema/achievement.schema';
-import { dialogStyles } from '../styles/achievementStyles';
 import {
   autocompleteChipSx,
   autocompleteTextFieldSx,
@@ -89,7 +88,6 @@ const AchievementDialog = ({ open, onClose }: AchievementDialogProps) => {
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      sx={dialogStyles.paper}
     >
       <Box sx={dialogHeaderContainer}>
         <Box display="flex" alignItems="center" gap={2}>

@@ -1,13 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Edit } from '@mui/icons-material';
 import {
   Autocomplete,
   Box,
-  Button as MuiButton,
   Chip,
   Dialog,
-  DialogActions,
   DialogContent,
-  DialogTitle,
   Divider,
   FormControl,
   FormHelperText,
@@ -32,9 +30,22 @@ import {
   achievementSchema,
 } from '../schema/achievement.schema';
 import { updateAchievement } from '../achievements.thunks';
+import { CATEGORY_COLOR_MAP, DIALOG_TITLE_TYPOGRAPHY, STATUS_COLOR_MAP } from '../constants';
 import { dialogStyles } from '../styles/achievementStyles';
+import {
+  autocompleteChipSx,
+  autocompleteTextFieldSx,
+  baseTextFieldSx,
+  dialogContentContainer,
+  dialogFooterContainer,
+  dialogHeaderContainer,
+  dialogHeaderIconBox,
+  selectTextFieldSx,
+  viewModeLabelSx,
+  viewModeValueSx,
+} from '../styles/dialogComponentStyles';
 import UIButton from '@/components/ui/UIButton';
-import { CATEGORY_COLOR_MAP, STATUS_COLOR_MAP } from '../constants/achievement.constants';
+import FormFieldLabel from './FormFieldLabel';
 
 interface AchievementDetailDialogProps {
   open: boolean;
@@ -120,28 +131,31 @@ const AchievementDetailDialog = ({
       onClose={handleClose}
       maxWidth="md"
       fullWidth
-      sx={dialogStyles.paper}
     >
-      <DialogTitle sx={dialogStyles.title}>
-        {isEditMode ? 'Edit Achievement' : 'Achievement Details'}
-      </DialogTitle>
+      <Box sx={dialogHeaderContainer}>
+        <Box display="flex" alignItems="center" gap={2}>
+          <Box sx={dialogHeaderIconBox}>
+            <Edit className="w-5 h-5" style={{ color: 'white' }} />
+          </Box>
+          <Typography
+            sx={{
+              ...DIALOG_TITLE_TYPOGRAPHY,
+              color: (theme) =>
+                theme.palette.mode === 'light'
+                  ? 'rgb(15,23,42)'
+                  : 'rgb(226,232,240)',
+            }}
+          >
+            {isEditMode ? 'Edit Achievement' : 'Achievement Details'}
+          </Typography>
+        </Box>
+      </Box>
 
-      <DialogContent sx={{ pt: 2 }}>
+      <DialogContent sx={dialogContentContainer}>
         {!isEditMode ? (
           <Box>
             <Box mb={3}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? 'rgb(71,85,105)'
-                      : 'rgb(148,163,184)',
-                  textTransform: 'uppercase',
-                  letterSpacing: 0.5,
-                  fontWeight: 600,
-                }}
-              >
+              <Typography variant="caption" sx={viewModeLabelSx}>
                 Title
               </Typography>
               <Typography
@@ -162,49 +176,17 @@ const AchievementDetailDialog = ({
             <Divider sx={{ my: 2 }} />
 
             <Box mb={3}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? 'rgb(71,85,105)'
-                      : 'rgb(148,163,184)',
-                  textTransform: 'uppercase',
-                  letterSpacing: 0.5,
-                  fontWeight: 600,
-                }}
-              >
+              <Typography variant="caption" sx={viewModeLabelSx}>
                 Description
               </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 1,
-                  lineHeight: 1.7,
-                  color: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? 'rgb(51,65,85)'
-                      : 'rgb(203,213,225)',
-                }}
-              >
+              <Typography variant="body1" sx={viewModeValueSx}>
                 {achievement.description}
               </Typography>
             </Box>
 
             <Grid container spacing={2} mb={3}>
               <Grid size={{ xs: 12, sm: 6 }}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(71,85,105)'
-                        : 'rgb(148,163,184)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.5,
-                    fontWeight: 600,
-                  }}
-                >
+                <Typography variant="caption" sx={viewModeLabelSx}>
                   Category
                 </Typography>
                 <Box mt={1}>
@@ -217,18 +199,7 @@ const AchievementDetailDialog = ({
               </Grid>
 
               <Grid size={{ xs: 12, sm: 6 }}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(71,85,105)'
-                        : 'rgb(148,163,184)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.5,
-                    fontWeight: 600,
-                  }}
-                >
+                <Typography variant="caption" sx={viewModeLabelSx}>
                   Status
                 </Typography>
                 <Box mt={1}>
@@ -241,30 +212,10 @@ const AchievementDetailDialog = ({
               </Grid>
 
               <Grid size={{ xs: 12, sm: 6 }}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(71,85,105)'
-                        : 'rgb(148,163,184)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.5,
-                    fontWeight: 600,
-                  }}
-                >
+                <Typography variant="caption" sx={viewModeLabelSx}>
                   Date
                 </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mt: 1,
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(51,65,85)'
-                        : 'rgb(203,213,225)',
-                  }}
-                >
+                <Typography variant="body2" sx={{ mt: 1, ...viewModeValueSx }}>
                   {dayjs(achievement.date).format('MMMM DD, YYYY')}
                 </Typography>
               </Grid>
@@ -273,49 +224,17 @@ const AchievementDetailDialog = ({
             <Divider sx={{ my: 2 }} />
 
             <Box mb={3}>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? 'rgb(71,85,105)'
-                      : 'rgb(148,163,184)',
-                  textTransform: 'uppercase',
-                  letterSpacing: 0.5,
-                  fontWeight: 600,
-                }}
-              >
+              <Typography variant="caption" sx={viewModeLabelSx}>
                 Impact
               </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 1,
-                  lineHeight: 1.7,
-                  color: (theme) =>
-                    theme.palette.mode === 'light'
-                      ? 'rgb(51,65,85)'
-                      : 'rgb(203,213,225)',
-                }}
-              >
+              <Typography variant="body1" sx={viewModeValueSx}>
                 {achievement.impact}
               </Typography>
             </Box>
 
             {achievement.techStack && achievement.techStack.length > 0 && (
               <Box>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? 'rgb(71,85,105)'
-                        : 'rgb(148,163,184)',
-                    textTransform: 'uppercase',
-                    letterSpacing: 0.5,
-                    fontWeight: 600,
-                  }}
-                >
+                <Typography variant="caption" sx={viewModeLabelSx}>
                   Tech Stack
                 </Typography>
                 <Box display="flex" flexWrap="wrap" gap={1} mt={1}>
@@ -333,196 +252,226 @@ const AchievementDetailDialog = ({
           </Box>
         ) : (
           <form id="edit-achievement-form" onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={3}>
-              <Grid sx={{ pt: 2 }} size={{ xs: 12 }}>
-                <Controller
-                  name="title"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      label="Title"
-                      error={!!errors.title}
-                      helperText={errors.title?.message}
-                      placeholder="Enter achievement title"
-                    />
-                  )}
-                />
-              </Grid>
-
+            <Grid container spacing={2.5}>
               <Grid size={{ xs: 12 }}>
-                <Controller
-                  name="description"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      multiline
-                      rows={4}
-                      label="Description"
-                      error={!!errors.description}
-                      helperText={errors.description?.message}
-                      placeholder="Describe your achievement"
-                    />
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Controller
-                  name="category"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      select
-                      label="Category"
-                      error={!!errors.category}
-                      helperText={errors.category?.message}
-                    >
-                      {Object.values(AchievementCategory).map((cat) => (
-                        <MenuItem key={cat} value={cat}>
-                          {cat}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Controller
-                  name="status"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      select
-                      label="Status"
-                      error={!!errors.status}
-                      helperText={errors.status?.message}
-                    >
-                      {Object.values(AchievementStatus).map((stat) => (
-                        <MenuItem key={stat} value={stat}>
-                          {stat}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Controller
-                  name="date"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      type="date"
-                      label="Date"
-                      error={!!errors.date}
-                      helperText={errors.date?.message}
-                      slotProps={{
-                        inputLabel: { shrink: true },
-                      }}
-                    />
-                  )}
-                />
-              </Grid>
-
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Controller
-                  name="techStack"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <FormControl fullWidth error={!!errors.techStack}>
-                      <Autocomplete
-                        multiple
-                        options={Object.values(TechStack)}
-                        value={value || []}
-                        onChange={(_, newValue) => onChange(newValue)}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            label="Tech Stack"
-                            placeholder="Select technologies"
-                            error={!!errors.techStack}
-                          />
-                        )}
-                        renderTags={(value, getTagProps) =>
-                          value.map((option, index) => (
-                            <Chip
-                              {...getTagProps({ index })}
-                              key={option}
-                              label={option}
-                              size="small"
-                            />
-                          ))
-                        }
+                <Box>
+                  <FormFieldLabel>Achievement Title</FormFieldLabel>
+                  <Controller
+                    name="title"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        size="small"
+                        error={!!errors.title}
+                        helperText={errors.title?.message}
+                        placeholder="Enter achievement title"
+                        sx={baseTextFieldSx}
                       />
-                      {errors.techStack && (
-                        <FormHelperText>
-                          {errors.techStack.message}
-                        </FormHelperText>
-                      )}
-                    </FormControl>
-                  )}
-                />
+                    )}
+                  />
+                </Box>
               </Grid>
 
               <Grid size={{ xs: 12 }}>
-                <Controller
-                  name="impact"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      multiline
-                      rows={3}
-                      label="Impact"
-                      error={!!errors.impact}
-                      helperText={errors.impact?.message}
-                      placeholder="Describe the impact of this achievement"
-                    />
-                  )}
-                />
+                <Box>
+                  <FormFieldLabel>Description</FormFieldLabel>
+                  <Controller
+                    name="description"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        multiline
+                        rows={4}
+                        size="small"
+                        error={!!errors.description}
+                        helperText={errors.description?.message}
+                        placeholder="Describe your achievement"
+                        sx={baseTextFieldSx}
+                      />
+                    )}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Box>
+                  <FormFieldLabel>Category</FormFieldLabel>
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        select
+                        size="small"
+                        error={!!errors.category}
+                        helperText={errors.category?.message}
+                        sx={selectTextFieldSx}
+                      >
+                        {Object.values(AchievementCategory).map((cat) => (
+                          <MenuItem key={cat} value={cat}>
+                            {cat}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    )}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Box>
+                  <FormFieldLabel>Status</FormFieldLabel>
+                  <Controller
+                    name="status"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        select
+                        size="small"
+                        error={!!errors.status}
+                        helperText={errors.status?.message}
+                        sx={selectTextFieldSx}
+                      >
+                        {Object.values(AchievementStatus).map((stat) => (
+                          <MenuItem key={stat} value={stat}>
+                            {stat}
+                          </MenuItem>
+                        ))}
+                      </TextField>
+                    )}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Box>
+                  <FormFieldLabel>Date</FormFieldLabel>
+                  <Controller
+                    name="date"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        type="date"
+                        size="small"
+                        error={!!errors.date}
+                        helperText={errors.date?.message}
+                        slotProps={{
+                          inputLabel: { shrink: true },
+                        }}
+                        sx={selectTextFieldSx}
+                      />
+                    )}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Box>
+                  <FormFieldLabel>Tech Stack</FormFieldLabel>
+                  <Controller
+                    name="techStack"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <FormControl fullWidth error={!!errors.techStack} size="small">
+                        <Autocomplete
+                          multiple
+                          size="small"
+                          options={Object.values(TechStack)}
+                          value={value || []}
+                          onChange={(_, newValue) => onChange(newValue)}
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              placeholder="Select technologies"
+                              error={!!errors.techStack}
+                              size="small"
+                              sx={autocompleteTextFieldSx}
+                            />
+                          )}
+                          renderValue={(value, getTagProps) =>
+                            value.map((option, index) => (
+                              <Chip
+                                {...getTagProps({ index })}
+                                key={option}
+                                label={option}
+                                size="small"
+                                sx={autocompleteChipSx}
+                              />
+                            ))
+                          }
+                        />
+                        {errors.techStack && (
+                          <FormHelperText>
+                            {errors.techStack.message}
+                          </FormHelperText>
+                        )}
+                      </FormControl>
+                    )}
+                  />
+                </Box>
+              </Grid>
+
+              <Grid size={{ xs: 12 }}>
+                <Box>
+                  <FormFieldLabel>Impact</FormFieldLabel>
+                  <Controller
+                    name="impact"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        fullWidth
+                        multiline
+                        rows={3}
+                        size="small"
+                        error={!!errors.impact}
+                        helperText={errors.impact?.message}
+                        placeholder="Describe the impact of this achievement"
+                        sx={baseTextFieldSx}
+                      />
+                    )}
+                  />
+                </Box>
               </Grid>
             </Grid>
           </form>
         )}
       </DialogContent>
 
-      <DialogActions sx={{ px: 3, pb: 3, pt: 1.5 }}>
+      <Box sx={dialogFooterContainer}>
         {!isEditMode ? (
           <>
-            <MuiButton
+            <UIButton
               type="button"
+              variant="outline"
               onClick={handleClose}
-              sx={dialogStyles.cancelButton}
             >
               Close
-            </MuiButton>
+            </UIButton>
             <UIButton type="button" variant="primary" onClick={handleEditToggle}>
               Edit
             </UIButton>
           </>
         ) : (
           <>
-            <MuiButton
+            <UIButton
               type="button"
+              variant="outline"
               onClick={handleEditToggle}
               disabled={isSubmitting}
-              sx={dialogStyles.cancelButton}
             >
               Cancel
-            </MuiButton>
+            </UIButton>
             <UIButton
               type="submit"
               form="edit-achievement-form"
@@ -533,7 +482,7 @@ const AchievementDetailDialog = ({
             </UIButton>
           </>
         )}
-      </DialogActions>
+      </Box>
     </Dialog>
   );
 };
