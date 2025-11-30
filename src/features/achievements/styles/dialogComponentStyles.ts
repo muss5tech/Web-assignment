@@ -170,6 +170,12 @@ export const autocompleteChipSx: SxProps<Theme> = {
 };
 
 export const dialogContentContainer = {
+  background: (theme: Theme) =>
+    getThemedValue(
+      theme,
+      'linear-gradient(90deg, rgba(248,250,252,0.98), rgba(241,245,249,0.95))',
+      'linear-gradient(90deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9))'
+    ),
   px: 3,
   py: 3,
 } as const;
