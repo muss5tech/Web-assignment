@@ -1,4 +1,4 @@
-import { Cancel, Delete, Edit, Save } from '@mui/icons-material';
+import { Cancel, Delete, Edit, Save, Visibility } from '@mui/icons-material';
 import {
   Autocomplete,
   Box,
@@ -75,17 +75,8 @@ const AchievementRow = ({
 }: AchievementRowProps) => {
   const isEditingRow = editing?.id === achievement.id;
 
-  const handleRowClick = (e: React.MouseEvent) => {
-    if (isEditingRow) return;
-    const target = e.target as HTMLElement;
-    if (
-      target.closest('button') ||
-      target.closest('[role="button"]') ||
-      target.closest('input') ||
-      target.closest('[role="combobox"]')
-    ) {
-      return;
-    }
+  const handleDetailClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     onRowClick(achievement);
   };
 
@@ -359,6 +350,13 @@ const AchievementRow = ({
       <Box display="flex" justifyContent="flex-end" gap={0.5}>
         <IconButton
           size="small"
+          color="info"
+          onClick={handleDetailClick}
+        >
+          <Visibility fontSize="small" />
+        </IconButton>
+        <IconButton
+          size="small"
           color="primary"
           onClick={handleEditClick}
         >
@@ -378,9 +376,8 @@ const AchievementRow = ({
   return (
     <TableRow
       hover={!isEditingRow}
-      onClick={handleRowClick}
       sx={{
-        cursor: isEditingRow ? 'default' : 'pointer',
+        cursor: 'default',
         transition: 'background-color 180ms ease, transform 120ms ease',
       }}
     >
